@@ -80,7 +80,7 @@ void main() {
 
       final state = container.read(loginViewModelProvider);
       expect(state.status, LoginStatus.failure);
-      expect(state.errorMessage, 'Bad credentials');
+      expect(state.failure, isA<UnauthorizedFailure>());
     });
   });
 }

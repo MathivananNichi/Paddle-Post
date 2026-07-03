@@ -1,9 +1,9 @@
 import 'package:flutter_base_project/bootstrap.dart';
 import 'package:flutter_base_project/core/config/app_config.dart';
 
-/// Default entry point.
+/// Default entry point (dev flavor).
 ///
-/// For multiple flavors, add `main_dev.dart` / `main_staging.dart` /
-/// `main_prod.dart` that each call `bootstrap(Flavor.x)`, then run with
-/// `flutter run -t lib/main_dev.dart`. This default uses the dev flavor.
+/// Per-flavor entry points live alongside this file — `main_dev.dart`,
+/// `main_staging.dart`, `main_prod.dart` — each calling `bootstrap(Flavor.x)`.
+/// Run a specific flavor with e.g. `flutter run -t lib/main_staging.dart`.
 Future<void> main() => bootstrap(Flavor.dev);

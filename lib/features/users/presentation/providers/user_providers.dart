@@ -14,8 +14,10 @@ UserRemoteDataSource userRemoteDataSource(Ref ref) =>
     UserRemoteDataSource(ref.watch(dioProvider));
 
 @riverpod
-UserRepository userRepository(Ref ref) =>
-    UserRepositoryImpl(ref.watch(userRemoteDataSourceProvider));
+UserRepository userRepository(Ref ref) => UserRepositoryImpl(
+      ref.watch(userRemoteDataSourceProvider),
+      ref.watch(networkInfoProvider),
+    );
 
 @riverpod
 GetUsersUseCase getUsersUseCase(Ref ref) =>

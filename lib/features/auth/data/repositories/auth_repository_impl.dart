@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_base_project/core/error/failures.dart';
 import 'package:flutter_base_project/core/network/api_error_mapper.dart';
+import 'package:flutter_base_project/core/network/network_info.dart';
 import 'package:flutter_base_project/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:flutter_base_project/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:flutter_base_project/features/auth/data/models/login_request_model.dart';
@@ -17,11 +18,14 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({
     required AuthRemoteDataSource remote,
     required AuthLocalDataSource local,
+    required NetworkInfo networkInfo,
   })  : _remote = remote,
-        _local = local;
+        _local = local,
+        _networkInfo = networkInfo;
 
   final AuthRemoteDataSource _remote;
   final AuthLocalDataSource _local;
+  final NetworkInfo _networkInfo;
 
   @override
   Future<Either<Failure, AuthToken>> login({
@@ -38,7 +42,7 @@ class AuthRepositoryImpl implements AuthRepository {
         refreshToken: token.refreshToken,
       );
       return token;
-    });
+    }, networkInfo: _networkInfo);
   }
 
   @override

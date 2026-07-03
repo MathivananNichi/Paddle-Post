@@ -1,3 +1,4 @@
+import 'package:flutter_base_project/core/error/failures.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_state.freezed.dart';
@@ -19,7 +20,8 @@ abstract class LoginState with _$LoginState {
     @Default('') String password,
     @Default(true) bool obscurePassword,
     @Default(LoginStatus.initial) LoginStatus status,
-    String? errorMessage,
+    // Kept as a domain [Failure] (not a String) so the View can localize it.
+    Failure? failure,
   }) = _LoginState;
 
   bool get isSubmitting => status == LoginStatus.submitting;

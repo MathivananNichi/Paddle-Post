@@ -8,6 +8,7 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - "lib/l10n/generated/**"
   errors:
     # Noisy false-positive with freezed + json_serializable `@JsonKey` usage.
     invalid_annotation_target: ignore

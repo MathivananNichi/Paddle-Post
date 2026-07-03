@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/utils/extensions/context_extensions.dart';
 
-/// Full-screen error placeholder with an optional retry action.
+/// Placeholder shown when a screen has loaded successfully but has no data.
 ///
-/// Pair this with an `AsyncValue.when`/`.error` branch to give every screen a
-/// consistent error experience.
-class ErrorView extends StatelessWidget {
-  const ErrorView({required this.message, this.onRetry, super.key});
+/// Mirrors [ErrorView] so success-but-empty and error states look consistent.
+/// The caller supplies a localized [message]; [icon] and an optional [action]
+/// let it be reused across features.
+class EmptyView extends StatelessWidget {
+  const EmptyView({
+    required this.message,
+    this.icon = Icons.inbox_outlined,
+    this.action,
+    super.key,
+  });
 
   final String message;
-  final VoidCallback? onRetry;
+  final IconData icon;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +26,16 @@ class ErrorView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.error_outline, size: 56, color: context.colors.error),
+            Icon(icon, size: 56, color: context.colors.outline),
             const SizedBox(height: 16),
             Text(
               message,
               textAlign: TextAlign.center,
               style: context.textTheme.bodyLarge,
             ),
-            if (onRetry != null) ...[
+            if (action != null) ...[
               const SizedBox(height: 16),
-              OutlinedButton.icon(
-                onPressed: onRetry,
-                icon: const Icon(Icons.refresh),
-                label: Text(context.l10n.retryButton),
-              ),
+              action!,
             ],
           ],
         ),

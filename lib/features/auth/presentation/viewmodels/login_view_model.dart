@@ -28,7 +28,7 @@ class LoginViewModel extends _$LoginViewModel {
 
   Future<void> submit() async {
     if (state.isSubmitting) return;
-    state = state.copyWith(status: LoginStatus.submitting, errorMessage: null);
+    state = state.copyWith(status: LoginStatus.submitting, failure: null);
 
     final result = await ref.read(loginUseCaseProvider).call(
           LoginParams(email: state.email.trim(), password: state.password),
@@ -37,7 +37,7 @@ class LoginViewModel extends _$LoginViewModel {
     state = result.fold(
       (failure) => state.copyWith(
         status: LoginStatus.failure,
-        errorMessage: failure.message,
+        failure: failure,
       ),
       (_) => state.copyWith(status: LoginStatus.success),
     );

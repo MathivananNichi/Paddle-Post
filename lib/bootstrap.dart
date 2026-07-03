@@ -18,18 +18,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 ///     need a pre-resolved instance.
 ///  5. Install a global error handler.
 Future<void> bootstrap(Flavor flavor) async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final binding = WidgetsFlutterBinding.ensureInitialized();
 
   AppConfig.init(flavor);
 
   final prefs = await SharedPreferences.getInstance();
 
+  // Errors surfaced by the Flutter framework (build/layout/paint).
   FlutterError.onError = (details) {
     AppLogger.e(
       'FlutterError',
       error: details.exception,
       stackTrace: details.stack,
     );
+  };
+
+  // Errors that escape the framework: async gaps, platform channels, etc.
+  // Returning true marks them as handled so the app is not torn down.
+  binding.platformDispatcher.onError = (error, stack) {
+    AppLogger.e('PlatformDispatcher', error: error, stackTrace: stack);
+    return true;
   };
 
   runApp(

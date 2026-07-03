@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_base_project/core/error/failures.dart';
+import 'package:flutter_base_project/core/network/network_info.dart';
 
 /// Runs a data-source call and converts any thrown error into a [Failure],
 /// returning the canonical `Either<Failure, T>` used throughout the app.
@@ -17,9 +18,15 @@ import 'package:flutter_base_project/core/error/failures.dart';
 /// }
 /// ```
 Future<Either<Failure, T>> guardApiCall<T>(
-  Future<T> Function() call,
-) async {
+  Future<T> Function() call, {
+  NetworkInfo? networkInfo,
+}) async {
   try {
+    // Fail fast (and offer a clear message) when the device is offline, instead
+    // of waiting for the request to time out.
+    if (networkInfo != null && !await networkInfo.isConnected) {
+      return const Left(NetworkFailure());
+    }
     return Right(await call());
   } on DioException catch (e) {
     return Left(e.toFailure());

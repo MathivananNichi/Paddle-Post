@@ -166,7 +166,7 @@ final class AuthRepositoryProvider
   }
 }
 
-String _$authRepositoryHash() => r'9af8c21b402075cfd9a63a623e4f3fe334e2a64e';
+String _$authRepositoryHash() => r'ddf2da44f0845b1adab08a39de6196706c87cdb0';
 
 @ProviderFor(loginUseCase)
 final loginUseCaseProvider = LoginUseCaseProvider._();

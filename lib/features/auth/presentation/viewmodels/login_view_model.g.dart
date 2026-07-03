@@ -59,7 +59,7 @@ final class LoginViewModelProvider
   }
 }
 
-String _$loginViewModelHash() => r'a7bf8866b22f6d4de875f6f6a7f031d8e0e9b766';
+String _$loginViewModelHash() => r'8dc18df2f6634719fa5a0e7ffb896b5d8a5c2d8f';
 
 /// ViewModel for the login screen.
 ///

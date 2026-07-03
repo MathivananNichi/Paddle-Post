@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/utils/extensions/context_extensions.dart';
+import 'package:flutter_base_project/core/utils/extensions/failure_extensions.dart';
 import 'package:flutter_base_project/core/utils/validators.dart';
+import 'package:flutter_base_project/core/widgets/app_text_field.dart';
 import 'package:flutter_base_project/core/widgets/primary_button.dart';
 import 'package:flutter_base_project/features/auth/presentation/viewmodels/login_state.dart';
 import 'package:flutter_base_project/features/auth/presentation/viewmodels/login_view_model.dart';
@@ -47,13 +49,14 @@ class _LoginViewState extends ConsumerState<LoginView> {
 
     // Surface failures as a snackbar without rebuilding the whole tree for it.
     ref.listen(loginViewModelProvider, (previous, next) {
-      if (next.status == LoginStatus.failure && next.errorMessage != null) {
-        context.showSnackBar(next.errorMessage!);
+      final failure = next.failure;
+      if (next.status == LoginStatus.failure && failure != null) {
+        context.showSnackBar(failure.localizedMessage(context.l10n));
       }
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Sign in')),
+      appBar: AppBar(title: Text(context.l10n.signInAppBarTitle)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -66,38 +69,34 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 Icon(Icons.lock_outline, size: 64, color: context.colors.primary),
                 const SizedBox(height: 24),
                 Text(
-                  'Welcome back',
+                  context.l10n.loginWelcome,
                   textAlign: TextAlign.center,
                   style: context.textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 32),
-                TextFormField(
+                AppTextField(
                   controller: _emailController,
+                  label: context.l10n.emailLabel,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email_outlined),
-                  ),
+                  prefixIcon: Icons.email_outlined,
                   validator: Validators.email,
                   onChanged: viewModel.emailChanged,
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
+                AppTextField(
                   controller: _passwordController,
+                  label: context.l10n.passwordLabel,
                   obscureText: state.obscurePassword,
                   textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        state.obscurePassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                      ),
-                      onPressed: viewModel.toggleObscurePassword,
+                  prefixIcon: Icons.lock_outline,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      state.obscurePassword
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
                     ),
+                    onPressed: viewModel.toggleObscurePassword,
                   ),
                   validator: Validators.password,
                   onChanged: viewModel.passwordChanged,
@@ -105,7 +104,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 ),
                 const SizedBox(height: 32),
                 PrimaryButton(
-                  label: 'Sign in',
+                  label: context.l10n.signInButton,
                   isLoading: state.isSubmitting,
                   onPressed: _onSubmit,
                 ),

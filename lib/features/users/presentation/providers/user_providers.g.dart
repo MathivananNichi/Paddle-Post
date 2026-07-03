@@ -100,7 +100,7 @@ final class UserRepositoryProvider
   }
 }
 
-String _$userRepositoryHash() => r'04b9e98de116edd11ab69f8ef5bc4b9ea44911d7';
+String _$userRepositoryHash() => r'f13304f7190f6ec87710bca60f16083ce5ff073d';
 
 @ProviderFor(getUsersUseCase)
 final getUsersUseCaseProvider = GetUsersUseCaseProvider._();
