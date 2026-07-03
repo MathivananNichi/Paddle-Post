@@ -1,0 +1,25 @@
+# Static analysis configuration.
+#
+# `flutter_lints` provides Flutter's recommended rule set. Generated files
+# (*.g.dart, *.freezed.dart) are excluded since we don't control their style.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    # Noisy false-positive with freezed + json_serializable `@JsonKey` usage.
+    invalid_annotation_target: ignore
+  language:
+    strict-casts: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_print
+    - prefer_const_constructors
+    - prefer_final_locals
+    - require_trailing_commas
+    - unawaited_futures
