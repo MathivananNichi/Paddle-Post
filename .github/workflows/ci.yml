@@ -1,0 +1,38 @@
+# Continuous integration.
+#
+# Runs on every push to the primary branches and on every pull request. Acts as
+# an automatic gatekeeper: a change cannot be merged clean unless it is
+# formatted, passes static analysis, and all tests are green.
+name: CI
+
+on:
+  push:
+    branches: [main, riverpod, riverpod-ai]
+  pull_request:
+
+jobs:
+  verify:
+    name: Format, analyze & test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.4'
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test

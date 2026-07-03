@@ -237,4 +237,23 @@ produced it.
 Static analysis is configured in `analysis_options.yaml` (extends
 `flutter_lints` with a stricter curated rule set). Generated files are excluded.
 `flutter analyze` **must be clean** and code **must be formatted**
-(`dart format .`) before a change is considered done.
+(`dart format .`) before a change is considered done. These same checks run in
+CI (see §13), so an unformatted or failing change cannot be merged clean.
+
+---
+
+## 13. Continuous integration
+
+`.github/workflows/ci.yml` runs on every push to `main` / `riverpod` /
+`riverpod-ai` and on every pull request. It is the automatic gatekeeper that
+turns the standards above from "should" into "must":
+
+1. Sets up the pinned Flutter version and installs dependencies.
+2. `dart format --output=none --set-exit-if-changed .` — fails on unformatted code.
+3. `flutter analyze` — fails on any analysis/lint issue.
+4. `flutter test` — fails if any test breaks.
+
+A green check means the change is safe to merge; a red X shows exactly which
+step failed. Committed generated code (`*.g.dart`, `*.freezed.dart`,
+`lib/l10n/generated/`) means CI does not need to run `build_runner`; regenerate
+and commit those locally whenever you change an annotated class or an ARB file.
