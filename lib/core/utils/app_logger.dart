@@ -10,7 +10,7 @@ class AppLogger {
   const AppLogger._();
 
   static final Logger _logger = Logger(
-    printer: PrettyPrinter(methodCount: 0, errorMethodCount: 8),
+    printer: PrettyPrinter(methodCount: 0),
     level: kReleaseMode ? Level.off : Level.debug,
   );
 

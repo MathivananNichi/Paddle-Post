@@ -40,7 +40,9 @@ class TimeoutFailure extends Failure {
 
 /// Authentication is required or the session has expired.
 class UnauthorizedFailure extends Failure {
-  const UnauthorizedFailure([super.message = 'Session expired, please sign in']);
+  const UnauthorizedFailure([
+    super.message = 'Session expired, please sign in',
+  ]);
 }
 
 /// A local cache/storage operation failed.

@@ -39,20 +39,20 @@ class AppConfig {
   static AppConfig init(Flavor flavor) {
     return _instance = switch (flavor) {
       Flavor.dev => const AppConfig._(
-          flavor: Flavor.dev,
-          baseUrl: 'https://reqres.in/api',
-          appName: '${AppConstants.appName} (Dev)',
-        ),
+        flavor: Flavor.dev,
+        baseUrl: 'https://reqres.in/api',
+        appName: '${AppConstants.appName} (Dev)',
+      ),
       Flavor.staging => const AppConfig._(
-          flavor: Flavor.staging,
-          baseUrl: 'https://reqres.in/api',
-          appName: '${AppConstants.appName} (Staging)',
-        ),
+        flavor: Flavor.staging,
+        baseUrl: 'https://reqres.in/api',
+        appName: '${AppConstants.appName} (Staging)',
+      ),
       Flavor.prod => const AppConfig._(
-          flavor: Flavor.prod,
-          baseUrl: 'https://reqres.in/api',
-          appName: AppConstants.appName,
-        ),
+        flavor: Flavor.prod,
+        baseUrl: 'https://reqres.in/api',
+        appName: AppConstants.appName,
+      ),
     };
   }
 }

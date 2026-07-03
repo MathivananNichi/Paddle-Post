@@ -5,8 +5,7 @@
 class Validators {
   const Validators._();
 
-  static final RegExp _emailRegExp =
-      RegExp(r'^[\w.+-]+@[\w-]+\.[\w.-]+$');
+  static final RegExp _emailRegExp = RegExp(r'^[\w.+-]+@[\w-]+\.[\w.-]+$');
 
   static String? email(String? value) {
     final v = value?.trim() ?? '';

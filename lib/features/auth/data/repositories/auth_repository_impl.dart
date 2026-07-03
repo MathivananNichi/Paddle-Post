@@ -19,9 +19,9 @@ class AuthRepositoryImpl implements AuthRepository {
     required AuthRemoteDataSource remote,
     required AuthLocalDataSource local,
     required NetworkInfo networkInfo,
-  })  : _remote = remote,
-        _local = local,
-        _networkInfo = networkInfo;
+  }) : _remote = remote,
+       _local = local,
+       _networkInfo = networkInfo;
 
   final AuthRemoteDataSource _remote;
   final AuthLocalDataSource _local;

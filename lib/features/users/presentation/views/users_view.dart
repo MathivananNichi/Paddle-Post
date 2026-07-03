@@ -29,8 +29,7 @@ class UsersView extends ConsumerWidget {
           IconButton(
             tooltip: context.l10n.toggleThemeTooltip,
             icon: Icon(_iconForThemeMode(themeMode)),
-            onPressed: () =>
-                ref.read(themeControllerProvider.notifier).cycle(),
+            onPressed: () => ref.read(themeControllerProvider.notifier).cycle(),
           ),
           IconButton(
             tooltip: context.l10n.signOutTooltip,
@@ -64,10 +63,10 @@ class UsersView extends ConsumerWidget {
   }
 
   IconData _iconForThemeMode(ThemeMode mode) => switch (mode) {
-        ThemeMode.system => Icons.brightness_auto_outlined,
-        ThemeMode.light => Icons.light_mode_outlined,
-        ThemeMode.dark => Icons.dark_mode_outlined,
-      };
+    ThemeMode.system => Icons.brightness_auto_outlined,
+    ThemeMode.light => Icons.light_mode_outlined,
+    ThemeMode.dark => Icons.dark_mode_outlined,
+  };
 }
 
 /// Empty state kept scrollable so pull-to-refresh still works with no data.

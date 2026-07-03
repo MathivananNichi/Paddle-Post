@@ -17,8 +17,9 @@ class UsersViewModel extends _$UsersViewModel {
   Future<List<AppUser>> build() => _fetch();
 
   Future<List<AppUser>> _fetch() async {
-    final result =
-        await ref.read(getUsersUseCaseProvider).call(const GetUsersParams());
+    final result = await ref
+        .read(getUsersUseCaseProvider)
+        .call(const GetUsersParams());
     // Translate Either -> value/throw so it slots into AsyncValue: a thrown
     // Failure becomes AsyncError, which the View renders via `.when`.
     return result.fold((failure) => throw failure, (users) => users);

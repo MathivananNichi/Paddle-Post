@@ -24,10 +24,10 @@ abstract class UserModel with _$UserModel {
       _$UserModelFromJson(json);
 
   AppUser toEntity() => AppUser(
-        id: id,
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        avatarUrl: avatar,
-      );
+    id: id,
+    email: email,
+    firstName: firstName,
+    lastName: lastName,
+    avatarUrl: avatar,
+  );
 }

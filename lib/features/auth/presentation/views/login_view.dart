@@ -66,7 +66,11 @@ class _LoginViewState extends ConsumerState<LoginView> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 16),
-                Icon(Icons.lock_outline, size: 64, color: context.colors.primary),
+                Icon(
+                  Icons.lock_outline,
+                  size: 64,
+                  color: context.colors.primary,
+                ),
                 const SizedBox(height: 24),
                 Text(
                   context.l10n.loginWelcome,
