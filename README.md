@@ -277,6 +277,10 @@ dart run build_runner watch --delete-conflicting-outputs
 ## Getting started
 
 ```bash
+# 0. Rebrand the clone (package id + app name), then re-run pub get/fix
+#    it triggers for you as part of the script
+dart run tool/rename_project.dart --package-name=com.company.app --app-name="My App"
+
 # 1. Install dependencies
 flutter pub get
 
@@ -290,6 +294,35 @@ flutter run
 flutter analyze
 flutter test
 ```
+
+**What `rename_project.dart` changes:**
+
+| File(s) | What gets replaced |
+|---|---|
+| `pubspec.yaml` | `name:` (Dart package name, derived from `--app-name`) and `description:` |
+| `lib/**/*.dart`, `test/**/*.dart` | Every `package:flutter_base_project/...` import; the `AppConstants.appName` string |
+| `lib/l10n/app_en.arb` | The `appTitle` value |
+| `android/app/build.gradle.kts` | `namespace` and `applicationId` |
+| `android/.../AndroidManifest.xml` | `android:label` (points at `@string/app_name`, unchanged by the script) |
+| `android/.../res/values/strings.xml` | The `app_name` string — the actual launcher label value |
+| `android/.../MainActivity.kt` | `package` declaration, and the file is **moved** to match the new package path |
+| `ios/Runner/Info.plist`, `ios/Runner.xcodeproj/project.pbxproj` | `CFBundleName`, `CFBundleDisplayName`, `PRODUCT_BUNDLE_IDENTIFIER` (incl. `.RunnerTests`) |
+
+It then runs `flutter pub get` and `dart fix --apply` for you (a renamed Dart
+package can re-sort relative to `package:flutter` imports, which `dart fix`
+corrects), so `flutter analyze` is clean immediately after.
+
+Only Android and iOS are supported — the macOS/Linux/Windows/web platform
+folders were removed. If you need one of them back, run
+`flutter create --platforms=<platform> .` from the repo root.
+
+**Not touched** — do these by hand if needed: app icons/launch screens, CI
+workflow file names, and anything outside the file list above. The launcher
+label (`strings.xml`) is a native Android resource, not Flutter's ARB/l10n
+system — the OS reads it before the Flutter engine starts, so `context.l10n`
+strings can't reach it. To localize the label itself per device language, add
+`values-<locale>/strings.xml` overrides (e.g. `values-fr/strings.xml`) with
+the same `app_name` key.
 
 The example talks to the public **reqres.in** sandbox API. The login screen is
 pre-filled with its demo credentials (`eve.holt@reqres.in` / `cityslicka`) so the
