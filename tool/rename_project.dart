@@ -76,6 +76,20 @@ void main(List<String> args) {
     if (updated != content) manifest.writeAsStringSync(updated);
   }
 
+  // The pubspec description is prose, not a placeholder token, so the
+  // generic rules above never match it. Swap it in explicitly.
+  final pubspec = File('pubspec.yaml');
+  if (pubspec.existsSync()) {
+    final content = pubspec.readAsStringSync();
+    final updated = content.replaceFirst(
+      'description: "A Flutter base project: MVVM + Clean Architecture with '
+      'Riverpod, Retrofit, Freezed and go_router."',
+      'description: "$appName — a Flutter app built on MVVM + Clean '
+      'Architecture with Riverpod, Retrofit, Freezed and go_router."',
+    );
+    if (updated != content) pubspec.writeAsStringSync(updated);
+  }
+
   final explicitFiles = <String>[
     'pubspec.yaml',
     'README.md',
