@@ -277,6 +277,10 @@ dart run build_runner watch --delete-conflicting-outputs
 ## Getting started
 
 ```bash
+# 0. Rebrand the clone (package id + app name), then re-run pub get/fix
+#    it triggers for you as part of the script
+dart run tool/rename_project.dart --package-name=com.company.app --app-name="My App"
+
 # 1. Install dependencies
 flutter pub get
 
