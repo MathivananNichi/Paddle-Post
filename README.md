@@ -295,6 +295,30 @@ flutter analyze
 flutter test
 ```
 
+**What `rename_project.dart` changes:**
+
+| File(s) | What gets replaced |
+|---|---|
+| `pubspec.yaml` | `name:` (Dart package name, derived from `--app-name`) and `description:` |
+| `lib/**/*.dart`, `test/**/*.dart` | Every `package:flutter_base_project/...` import; the `AppConstants.appName` string |
+| `lib/l10n/app_en.arb` | The `appTitle` value |
+| `android/app/build.gradle.kts` | `namespace` and `applicationId` |
+| `android/.../AndroidManifest.xml` | `android:label` (set to `--app-name`, not the package id) |
+| `android/.../MainActivity.kt` | `package` declaration, and the file is **moved** to match the new package path |
+| `ios/Runner/Info.plist`, `ios/Runner.xcodeproj/project.pbxproj` | `CFBundleName`, `CFBundleDisplayName`, `PRODUCT_BUNDLE_IDENTIFIER` (incl. `.RunnerTests`) |
+| `macos/Runner/Configs/AppInfo.xcconfig`, `macos/Runner.xcodeproj/...` | `PRODUCT_NAME`, `PRODUCT_BUNDLE_IDENTIFIER`, `.RunnerTests` id, xcscheme `BuildableName` |
+| `linux/CMakeLists.txt`, `linux/runner/my_application.cc` | `APPLICATION_ID`, GTK window/header-bar title |
+| `windows/CMakeLists.txt`, `windows/runner/Runner.rc`, `windows/runner/main.cpp` | `BINARY_NAME`, `ProductName`/`FileDescription`/`InternalName`/`OriginalFilename`, window title |
+| `web/manifest.json`, `web/index.html` | `name`, `short_name`, `<title>` |
+| Any file above containing `com.example` | Replaced with the company/domain prefix of `--package-name` (e.g. `com.acme` from `com.acme.demo`) — covers `CompanyName`/copyright strings |
+
+It then runs `flutter pub get` and `dart fix --apply` for you (a renamed Dart
+package can re-sort relative to `package:flutter` imports, which `dart fix`
+corrects), so `flutter analyze` is clean immediately after.
+
+**Not touched** — do these by hand if needed: app icons/launch screens, CI
+workflow file names, and anything outside the file list above.
+
 The example talks to the public **reqres.in** sandbox API. The login screen is
 pre-filled with its demo credentials (`eve.holt@reqres.in` / `cityslicka`) so the
 flow works out of the box.
