@@ -303,21 +303,26 @@ flutter test
 | `lib/**/*.dart`, `test/**/*.dart` | Every `package:flutter_base_project/...` import; the `AppConstants.appName` string |
 | `lib/l10n/app_en.arb` | The `appTitle` value |
 | `android/app/build.gradle.kts` | `namespace` and `applicationId` |
-| `android/.../AndroidManifest.xml` | `android:label` (set to `--app-name`, not the package id) |
+| `android/.../AndroidManifest.xml` | `android:label` (points at `@string/app_name`, unchanged by the script) |
+| `android/.../res/values/strings.xml` | The `app_name` string — the actual launcher label value |
 | `android/.../MainActivity.kt` | `package` declaration, and the file is **moved** to match the new package path |
 | `ios/Runner/Info.plist`, `ios/Runner.xcodeproj/project.pbxproj` | `CFBundleName`, `CFBundleDisplayName`, `PRODUCT_BUNDLE_IDENTIFIER` (incl. `.RunnerTests`) |
-| `macos/Runner/Configs/AppInfo.xcconfig`, `macos/Runner.xcodeproj/...` | `PRODUCT_NAME`, `PRODUCT_BUNDLE_IDENTIFIER`, `.RunnerTests` id, xcscheme `BuildableName` |
-| `linux/CMakeLists.txt`, `linux/runner/my_application.cc` | `APPLICATION_ID`, GTK window/header-bar title |
-| `windows/CMakeLists.txt`, `windows/runner/Runner.rc`, `windows/runner/main.cpp` | `BINARY_NAME`, `ProductName`/`FileDescription`/`InternalName`/`OriginalFilename`, window title |
-| `web/manifest.json`, `web/index.html` | `name`, `short_name`, `<title>` |
-| Any file above containing `com.example` | Replaced with the company/domain prefix of `--package-name` (e.g. `com.acme` from `com.acme.demo`) — covers `CompanyName`/copyright strings |
 
 It then runs `flutter pub get` and `dart fix --apply` for you (a renamed Dart
 package can re-sort relative to `package:flutter` imports, which `dart fix`
 corrects), so `flutter analyze` is clean immediately after.
 
+Only Android and iOS are supported — the macOS/Linux/Windows/web platform
+folders were removed. If you need one of them back, run
+`flutter create --platforms=<platform> .` from the repo root.
+
 **Not touched** — do these by hand if needed: app icons/launch screens, CI
-workflow file names, and anything outside the file list above.
+workflow file names, and anything outside the file list above. The launcher
+label (`strings.xml`) is a native Android resource, not Flutter's ARB/l10n
+system — the OS reads it before the Flutter engine starts, so `context.l10n`
+strings can't reach it. To localize the label itself per device language, add
+`values-<locale>/strings.xml` overrides (e.g. `values-fr/strings.xml`) with
+the same `app_name` key.
 
 The example talks to the public **reqres.in** sandbox API. The login screen is
 pre-filled with its demo credentials (`eve.holt@reqres.in` / `cityslicka`) so the

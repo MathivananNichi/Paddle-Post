@@ -6,8 +6,8 @@
 // Replaces the placeholder package id (com.example.flutter_base_project),
 // display name (Flutter Base Project) and Dart package name
 // (flutter_base_project) across pubspec.yaml, all Dart source, and the
-// Android/iOS/macOS/Linux/Windows/web platform folders, then moves
-// MainActivity.kt to match the new Android package path.
+// Android/iOS platform folders, then moves MainActivity.kt to match the
+// new Android package path.
 //
 // Run once, right after cloning, from the repository root.
 import 'dart:io';
@@ -49,31 +49,28 @@ void main(List<String> args) {
   }
 
   final dartName = _toDartName(appName);
-  final segments = packageName.split('.');
-  final companyId = segments.sublist(0, segments.length - 1).join('.');
 
   // Longest/most-specific patterns first so a shorter pattern can't
   // partially rewrite a longer one before it gets its turn.
   final replacements = <MapEntry<String, String>>[
     MapEntry('com.example.flutterBaseProject', packageName),
     MapEntry('com.example.flutter_base_project', packageName),
-    MapEntry('com.example', companyId),
     MapEntry('Flutter Base Project', appName),
     MapEntry('flutter_base_project', dartName),
   ];
 
-  // The launcher label is a plain project-name string in the manifest
-  // (not the "Flutter Base Project" display string), so the generic
-  // dart-name rule above would otherwise turn it into the Dart package
-  // name instead of the human-readable app name. Fix it up first.
-  final manifest = File('android/app/src/main/AndroidManifest.xml');
-  if (manifest.existsSync()) {
-    final content = manifest.readAsStringSync();
+  // The launcher label lives in an Android string resource (not the
+  // manifest itself, and not Flutter's ARB/l10n system — the OS reads it
+  // before the Flutter engine starts) so it can be localized per device
+  // language via values-<locale>/strings.xml overrides.
+  final strings = File('android/app/src/main/res/values/strings.xml');
+  if (strings.existsSync()) {
+    final content = strings.readAsStringSync();
     final updated = content.replaceAll(
-      'android:label="flutter_base_project"',
-      'android:label="$appName"',
+      '<string name="app_name">Flutter Base Project</string>',
+      '<string name="app_name">$appName</string>',
     );
-    if (updated != content) manifest.writeAsStringSync(updated);
+    if (updated != content) strings.writeAsStringSync(updated);
   }
 
   // The pubspec description is prose, not a placeholder token, so the
@@ -98,16 +95,6 @@ void main(List<String> args) {
     'android/app/src/main/AndroidManifest.xml',
     'ios/Runner/Info.plist',
     'ios/Runner.xcodeproj/project.pbxproj',
-    'macos/Runner/Configs/AppInfo.xcconfig',
-    'macos/Runner.xcodeproj/project.pbxproj',
-    'macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme',
-    'linux/CMakeLists.txt',
-    'linux/runner/my_application.cc',
-    'windows/CMakeLists.txt',
-    'windows/runner/Runner.rc',
-    'windows/runner/main.cpp',
-    'web/manifest.json',
-    'web/index.html',
   ];
 
   var changedFiles = 0;
