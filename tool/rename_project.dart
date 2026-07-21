@@ -44,7 +44,9 @@ void main(List<String> args) {
   }
 
   if (!File('pubspec.yaml').existsSync()) {
-    stderr.writeln('Run this from the repository root (pubspec.yaml not found).');
+    stderr.writeln(
+      'Run this from the repository root (pubspec.yaml not found).',
+    );
     exit(1);
   }
 
@@ -80,9 +82,9 @@ void main(List<String> args) {
     final content = pubspec.readAsStringSync();
     final updated = content.replaceFirst(
       'description: "A Flutter base project: MVVM + Clean Architecture with '
-      'Riverpod, Retrofit, Freezed and go_router."',
+          'Riverpod, Retrofit, Freezed and go_router."',
       'description: "$appName — a Flutter app built on MVVM + Clean '
-      'Architecture with Riverpod, Retrofit, Freezed and go_router."',
+          'Architecture with Riverpod, Retrofit, Freezed and go_router."',
     );
     if (updated != content) pubspec.writeAsStringSync(updated);
   }
@@ -149,7 +151,10 @@ void _run(String executable, List<String> arguments) {
   }
 }
 
-bool _applyReplacements(File file, List<MapEntry<String, String>> replacements) {
+bool _applyReplacements(
+  File file,
+  List<MapEntry<String, String>> replacements,
+) {
   final original = file.readAsStringSync();
   var updated = original;
   for (final replacement in replacements) {
