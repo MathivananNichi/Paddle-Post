@@ -27,10 +27,10 @@ AuthLocalDataSource authLocalDataSource(Ref ref) =>
 
 @riverpod
 AuthRepository authRepository(Ref ref) => AuthRepositoryImpl(
-      remote: ref.watch(authRemoteDataSourceProvider),
-      local: ref.watch(authLocalDataSourceProvider),
-      networkInfo: ref.watch(networkInfoProvider),
-    );
+  remote: ref.watch(authRemoteDataSourceProvider),
+  local: ref.watch(authLocalDataSourceProvider),
+  networkInfo: ref.watch(networkInfoProvider),
+);
 
 @riverpod
 LoginUseCase loginUseCase(Ref ref) =>

@@ -21,8 +21,7 @@ class FakeAuthRepository implements AuthRepository {
   Future<Either<Failure, AuthToken>> login({
     required String email,
     required String password,
-  }) async =>
-      loginResult;
+  }) async => loginResult;
 
   @override
   Future<Either<Failure, Unit>> logout() async {
@@ -60,10 +59,7 @@ void main() {
         container.read(loginViewModelProvider).status,
         LoginStatus.success,
       );
-      expect(
-        container.read(authControllerProvider),
-        AuthStatus.authenticated,
-      );
+      expect(container.read(authControllerProvider), AuthStatus.authenticated);
     });
 
     test('sets status to failure and exposes the message', () async {

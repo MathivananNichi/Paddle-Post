@@ -24,8 +24,9 @@ class AppTheme {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor:
-          isLight ? AppColors.lightBackground : AppColors.darkBackground,
+      scaffoldBackgroundColor: isLight
+          ? AppColors.lightBackground
+          : AppColors.darkBackground,
       appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),

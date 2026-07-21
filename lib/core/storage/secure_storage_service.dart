@@ -11,11 +11,16 @@ class SecureStorageService {
 
   final FlutterSecureStorage _storage;
 
-  Future<String?> getAccessToken() => _storage.read(key: StorageKeys.accessToken);
+  /// The stored access token, or `null` if none has been saved.
+  Future<String?> getAccessToken() =>
+      _storage.read(key: StorageKeys.accessToken);
 
+  /// The stored refresh token, or `null` if none has been saved.
   Future<String?> getRefreshToken() =>
       _storage.read(key: StorageKeys.refreshToken);
 
+  /// Persists [accessToken]; writes [refreshToken] only when it is non-null so
+  /// an existing refresh token is not clobbered by a token-only response.
   Future<void> saveTokens({
     required String accessToken,
     String? refreshToken,
@@ -26,6 +31,7 @@ class SecureStorageService {
     }
   }
 
+  /// Deletes both tokens. Called on logout and on a 401 (see `AuthInterceptor`).
   Future<void> clearTokens() async {
     await _storage.delete(key: StorageKeys.accessToken);
     await _storage.delete(key: StorageKeys.refreshToken);

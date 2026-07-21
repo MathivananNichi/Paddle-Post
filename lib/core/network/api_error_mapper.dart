@@ -51,7 +51,9 @@ extension DioExceptionMapper on DioException {
         if (statusCode == 401 || statusCode == 403) {
           return const UnauthorizedFailure();
         }
-        return ServerFailure(_messageFromResponse() ?? 'Server error ($statusCode)');
+        return ServerFailure(
+          _messageFromResponse() ?? 'Server error ($statusCode)',
+        );
       case DioExceptionType.cancel:
         return const UnknownFailure('Request was cancelled');
       case DioExceptionType.badCertificate:

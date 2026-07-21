@@ -9,14 +9,19 @@ class PreferencesService {
 
   final SharedPreferences _prefs;
 
+  /// Whether the user has completed onboarding. Defaults to `false`.
   bool get isOnboardingComplete =>
       _prefs.getBool(StorageKeys.isOnboardingComplete) ?? false;
 
-  Future<void> setOnboardingComplete(bool value) =>
-      _prefs.setBool(StorageKeys.isOnboardingComplete, value);
+  Future<void> setOnboardingComplete({required bool isComplete}) =>
+      _prefs.setBool(StorageKeys.isOnboardingComplete, isComplete);
 
+  /// The persisted theme choice as a `ThemeMode.name` string
+  /// (`'system' | 'light' | 'dark'`), or `null` if never set. Parsed by
+  /// `ThemeController`.
   String? get themeMode => _prefs.getString(StorageKeys.themeMode);
 
+  /// Persists [value], expected to be a `ThemeMode.name` string.
   Future<void> setThemeMode(String value) =>
       _prefs.setString(StorageKeys.themeMode, value);
 }

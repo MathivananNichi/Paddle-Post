@@ -26,19 +26,21 @@ class LoginViewModel extends _$LoginViewModel {
   void toggleObscurePassword() =>
       state = state.copyWith(obscurePassword: !state.obscurePassword);
 
+  /// Runs the login use case with the current credentials and folds the result
+  /// into [LoginState]. On success it flips the global session status via
+  /// [AuthController] so the router moves the user into the authenticated area.
+  /// No-ops while a submission is already in flight.
   Future<void> submit() async {
     if (state.isSubmitting) return;
     state = state.copyWith(status: LoginStatus.submitting, failure: null);
 
-    final result = await ref.read(loginUseCaseProvider).call(
-          LoginParams(email: state.email.trim(), password: state.password),
-        );
+    final result = await ref
+        .read(loginUseCaseProvider)
+        .call(LoginParams(email: state.email.trim(), password: state.password));
 
     state = result.fold(
-      (failure) => state.copyWith(
-        status: LoginStatus.failure,
-        failure: failure,
-      ),
+      (failure) =>
+          state.copyWith(status: LoginStatus.failure, failure: failure),
       (_) => state.copyWith(status: LoginStatus.success),
     );
 

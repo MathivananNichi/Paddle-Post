@@ -46,9 +46,9 @@ AuthInterceptor authInterceptor(Ref ref) =>
 
 @Riverpod(keepAlive: true)
 Dio dio(Ref ref) => DioClient.create(
-      baseUrl: AppConfig.instance.baseUrl,
-      authInterceptor: ref.watch(authInterceptorProvider),
-    );
+  baseUrl: AppConfig.instance.baseUrl,
+  authInterceptor: ref.watch(authInterceptorProvider),
+);
 
 @Riverpod(keepAlive: true)
 Connectivity connectivity(Ref ref) => Connectivity();

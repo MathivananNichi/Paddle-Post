@@ -8,6 +8,7 @@ class AuthLocalDataSource {
 
   final SecureStorageService _secureStorage;
 
+  /// Persists the session tokens after a successful login.
   Future<void> cacheTokens({
     required String accessToken,
     String? refreshToken,
@@ -18,8 +19,10 @@ class AuthLocalDataSource {
     );
   }
 
+  /// Removes the persisted session (used on logout).
   Future<void> clear() => _secureStorage.clearTokens();
 
+  /// Whether a non-empty access token is currently stored.
   Future<bool> hasToken() async {
     final token = await _secureStorage.getAccessToken();
     return token != null && token.isNotEmpty;

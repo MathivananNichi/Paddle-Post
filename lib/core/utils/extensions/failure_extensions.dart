@@ -9,11 +9,11 @@ import 'package:flutter_base_project/l10n/generated/app_localizations.dart';
 /// raw (English fallback) `Failure.message`.
 extension FailureLocalizer on Failure {
   String localizedMessage(AppLocalizations l10n) => switch (this) {
-        ServerFailure() => l10n.failureServer,
-        NetworkFailure() => l10n.failureNetwork,
-        TimeoutFailure() => l10n.failureTimeout,
-        UnauthorizedFailure() => l10n.failureUnauthorized,
-        CacheFailure() => l10n.failureCache,
-        UnknownFailure() => l10n.failureUnknown,
-      };
+    ServerFailure() => l10n.failureServer,
+    NetworkFailure() => l10n.failureNetwork,
+    TimeoutFailure() => l10n.failureTimeout,
+    UnauthorizedFailure() => l10n.failureUnauthorized,
+    CacheFailure() => l10n.failureCache,
+    UnknownFailure() => l10n.failureUnknown,
+  };
 }
