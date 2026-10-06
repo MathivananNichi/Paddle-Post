@@ -8,7 +8,7 @@ import 'dart:io';
 /// 3. Flutter test
 ///
 /// Can be executed manually (`dart run tool/pre_commit.dart`) or installed into
-/// `.git/hooks/pre-commit` (`dart run tool/pre_commit.dart --install`).
+/// `.git/hooks/pre-commit` and `.githooks/` (`dart run tool/pre_commit.dart --install`).
 Future<void> main(List<String> args) async {
   if (args.contains('--install')) {
     _installGitHook();
@@ -65,21 +65,49 @@ Future<void> main(List<String> args) async {
 }
 
 void _installGitHook() {
-  final hooksDir = Directory('.git/hooks');
-  if (!hooksDir.existsSync()) {
-    stderr.writeln('Error: .git/hooks directory not found.');
-    exit(1);
-  }
-
-  final preCommitFile = File('.git/hooks/pre-commit');
   const hookScript = '''#!/bin/sh
 # Git pre-commit hook for PaddlePost
-dart run tool/pre_commit.dart
+# Runs format (100-char width), static analysis, and test suite before committing.
+
+if command -v dart >/dev/null 2>&1; then
+  dart run tool/pre_commit.dart
+elif command -v dart.bat >/dev/null 2>&1; then
+  dart.bat run tool/pre_commit.dart
+elif command -v flutter >/dev/null 2>&1; then
+  flutter pub run tool/pre_commit.dart
+elif command -v flutter.bat >/dev/null 2>&1; then
+  flutter.bat pub run tool/pre_commit.dart
+else
+  echo "Error: Neither Dart nor Flutter SDK found in PATH."
+  exit 1
+fi
 ''';
 
-  preCommitFile.writeAsStringSync(hookScript);
-  if (!Platform.isWindows) {
-    Process.runSync('chmod', ['+x', preCommitFile.path]);
+  // 1. Install in .githooks/pre-commit
+  final githooksDir = Directory('.githooks');
+  if (!githooksDir.existsSync()) {
+    githooksDir.createSync(recursive: true);
   }
-  stdout.writeln('Pre-commit hook installed to .git/hooks/pre-commit');
+  final githookFile = File('.githooks/pre-commit');
+  githookFile.writeAsStringSync(hookScript);
+
+  // 2. Install in .git/hooks/pre-commit if .git exists
+  final hooksDir = Directory('.git/hooks');
+  if (hooksDir.existsSync()) {
+    final preCommitFile = File('.git/hooks/pre-commit');
+    preCommitFile.writeAsStringSync(hookScript);
+    if (!Platform.isWindows) {
+      Process.runSync('chmod', ['+x', preCommitFile.path]);
+    }
+  }
+
+  // 3. Configure git core.hooksPath
+  Process.runSync('git', ['config', 'core.hooksPath', '.githooks'], runInShell: true);
+
+  if (!Platform.isWindows) {
+    Process.runSync('chmod', ['+x', githookFile.path]);
+  }
+
+  stdout.writeln('Pre-commit hook installed to .githooks/pre-commit and .git/hooks/pre-commit');
+  stdout.writeln('Git configuration core.hooksPath set to .githooks');
 }
