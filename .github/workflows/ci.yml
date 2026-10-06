@@ -54,11 +54,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Generate code (freezed / riverpod / retrofit)
-        run: dart run build_runner build
-
       - name: Verify formatting (line-length 100)
         run: dart format --line-length 100 --output=none --set-exit-if-changed .
+
+      - name: Generate code (freezed / riverpod / retrofit)
+        run: dart run build_runner build
 
       - name: Run static analysis
         run: flutter analyze
