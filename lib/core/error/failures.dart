@@ -12,9 +12,7 @@ sealed class Failure {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Failure &&
-          runtimeType == other.runtimeType &&
-          message == other.message;
+      other is Failure && runtimeType == other.runtimeType && message == other.message;
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
@@ -40,9 +38,7 @@ class TimeoutFailure extends Failure {
 
 /// Authentication is required or the session has expired.
 class UnauthorizedFailure extends Failure {
-  const UnauthorizedFailure([
-    super.message = 'Session expired, please sign in',
-  ]);
+  const UnauthorizedFailure([super.message = 'Session expired, please sign in']);
 }
 
 /// A local cache/storage operation failed.

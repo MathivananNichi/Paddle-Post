@@ -10,10 +10,7 @@ import 'package:paddle_post/features/auth/domain/entities/auth_token.dart';
 /// keeps the domain independent of Dio, Retrofit, storage, etc.
 abstract interface class AuthRepository {
   /// Authenticates with [email]/[password] and persists the session token.
-  Future<Either<Failure, AuthToken>> login({
-    required String email,
-    required String password,
-  });
+  Future<Either<Failure, AuthToken>> login({required String email, required String password});
 
   /// Clears the persisted session.
   Future<Either<Failure, Unit>> logout();

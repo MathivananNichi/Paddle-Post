@@ -12,10 +12,7 @@ class AuthInterceptor extends Interceptor {
   final SecureStorageService _secureStorage;
 
   @override
-  Future<void> onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
+  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     final token = await _secureStorage.getAccessToken();
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
@@ -24,10 +21,7 @@ class AuthInterceptor extends Interceptor {
   }
 
   @override
-  Future<void> onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) async {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     // On 401 the session is no longer valid: clear stored credentials so the
     // app can react (e.g. redirect to login). A real app would attempt a
     // refresh-token flow here before giving up.

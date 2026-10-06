@@ -23,10 +23,7 @@ part 'app_router.g.dart';
 @riverpod
 GoRouter goRouter(Ref ref) {
   final refresh = ValueNotifier<AuthStatus>(ref.read(authControllerProvider));
-  ref.listen<AuthStatus>(
-    authControllerProvider,
-    (_, next) => refresh.value = next,
-  );
+  ref.listen<AuthStatus>(authControllerProvider, (_, next) => refresh.value = next);
   ref.onDispose(refresh.dispose);
 
   return GoRouter(
@@ -42,8 +39,7 @@ GoRouter goRouter(Ref ref) {
       }
 
       final isLoggedIn = status == AuthStatus.authenticated;
-      final isOnLoginFlow =
-          location == AppRoutes.login || location == AppRoutes.splash;
+      final isOnLoginFlow = location == AppRoutes.login || location == AppRoutes.splash;
 
       if (!isLoggedIn) {
         return location == AppRoutes.login ? null : AppRoutes.login;

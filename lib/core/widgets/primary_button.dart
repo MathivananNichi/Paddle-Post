@@ -22,10 +22,7 @@ class PrimaryButton extends StatelessWidget {
     return FilledButton(
       onPressed: isLoading ? null : onPressed,
       child: isLoading
-          ? const SizedBox.square(
-              dimension: 22,
-              child: CircularProgressIndicator(strokeWidth: 2.5),
-            )
+          ? const SizedBox.square(dimension: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
           : Text(label),
     );
   }

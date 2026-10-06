@@ -12,9 +12,7 @@ class AuthToken {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AuthToken &&
-          accessToken == other.accessToken &&
-          refreshToken == other.refreshToken;
+      other is AuthToken && accessToken == other.accessToken && refreshToken == other.refreshToken;
 
   @override
   int get hashCode => Object.hash(accessToken, refreshToken);

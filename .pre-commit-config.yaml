@@ -1,0 +1,25 @@
+# Pre-commit framework configuration for PaddlePost
+# See https://pre-commit.com for more information
+repos:
+  - repo: local
+    hooks:
+      - id: dart-format
+        name: Dart Format (line-length 100)
+        entry: dart format --line-length 100 --output=none --set-exit-if-changed
+        language: system
+        types: [dart]
+        exclude: '\.(g|freezed)\.dart$'
+
+      - id: flutter-analyze
+        name: Flutter Analyze
+        entry: flutter analyze
+        language: system
+        types: [dart]
+        pass_filenames: false
+
+      - id: flutter-test
+        name: Flutter Test
+        entry: flutter test
+        language: system
+        types: [dart]
+        pass_filenames: false

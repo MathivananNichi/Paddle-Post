@@ -32,9 +32,7 @@ void main(List<String> args) {
     exit(1);
   }
 
-  final packageNamePattern = RegExp(
-    r'^[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$',
-  );
+  final packageNamePattern = RegExp(r'^[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$');
   if (!packageNamePattern.hasMatch(packageName)) {
     stderr.writeln(
       'Invalid --package-name "$packageName". '
@@ -44,9 +42,7 @@ void main(List<String> args) {
   }
 
   if (!File('pubspec.yaml').existsSync()) {
-    stderr.writeln(
-      'Run this from the repository root (pubspec.yaml not found).',
-    );
+    stderr.writeln('Run this from the repository root (pubspec.yaml not found).');
     exit(1);
   }
 
@@ -151,10 +147,7 @@ void _run(String executable, List<String> arguments) {
   }
 }
 
-bool _applyReplacements(
-  File file,
-  List<MapEntry<String, String>> replacements,
-) {
+bool _applyReplacements(File file, List<MapEntry<String, String>> replacements) {
   final original = file.readAsStringSync();
   var updated = original;
   for (final replacement in replacements) {
@@ -168,19 +161,13 @@ bool _applyReplacements(
 }
 
 void _moveMainActivity(String packageName) {
-  final oldDir = Directory(
-    'android/app/src/main/kotlin/com/example/flutter_base_project',
-  );
+  final oldDir = Directory('android/app/src/main/kotlin/com/example/flutter_base_project');
   final oldFile = File('${oldDir.path}/MainActivity.kt');
   if (!oldFile.existsSync()) return;
 
-  _applyReplacements(oldFile, [
-    MapEntry('com.example.flutter_base_project', packageName),
-  ]);
+  _applyReplacements(oldFile, [MapEntry('com.example.flutter_base_project', packageName)]);
 
-  final newDir = Directory(
-    'android/app/src/main/kotlin/${packageName.replaceAll('.', '/')}',
-  );
+  final newDir = Directory('android/app/src/main/kotlin/${packageName.replaceAll('.', '/')}');
   if (newDir.path == oldDir.path) return;
 
   newDir.createSync(recursive: true);

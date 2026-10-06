@@ -9,14 +9,8 @@ class AuthLocalDataSource {
   final SecureStorageService _secureStorage;
 
   /// Persists the session tokens after a successful login.
-  Future<void> cacheTokens({
-    required String accessToken,
-    String? refreshToken,
-  }) {
-    return _secureStorage.saveTokens(
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    );
+  Future<void> cacheTokens({required String accessToken, String? refreshToken}) {
+    return _secureStorage.saveTokens(accessToken: accessToken, refreshToken: refreshToken);
   }
 
   /// Removes the persisted session (used on logout).

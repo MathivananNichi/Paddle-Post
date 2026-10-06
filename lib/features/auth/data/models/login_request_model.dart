@@ -10,10 +10,8 @@ part 'login_request_model.g.dart';
 /// `json_serializable` (to/fromJson) so we never hand-write boilerplate.
 @freezed
 abstract class LoginRequestModel with _$LoginRequestModel {
-  const factory LoginRequestModel({
-    required String email,
-    required String password,
-  }) = _LoginRequestModel;
+  const factory LoginRequestModel({required String email, required String password}) =
+      _LoginRequestModel;
 
   factory LoginRequestModel.fromJson(Map<String, dynamic> json) =>
       _$LoginRequestModelFromJson(json);

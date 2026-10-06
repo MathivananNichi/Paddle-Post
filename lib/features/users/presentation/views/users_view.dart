@@ -41,9 +41,7 @@ class UsersView extends ConsumerWidget {
       body: usersAsync.when(
         loading: LoadingView.new,
         error: (error, _) => ErrorView(
-          message: error is Failure
-              ? error.localizedMessage(context.l10n)
-              : error.toString(),
+          message: error is Failure ? error.localizedMessage(context.l10n) : error.toString(),
           onRetry: () => ref.read(usersViewModelProvider.notifier).refresh(),
         ),
         data: (users) => RefreshIndicator(
@@ -54,8 +52,7 @@ class UsersView extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   itemCount: users.length,
                   separatorBuilder: (_, _) => const Divider(height: 1),
-                  itemBuilder: (context, index) =>
-                      _UserTile(user: users[index]),
+                  itemBuilder: (context, index) => _UserTile(user: users[index]),
                 ),
         ),
       ),

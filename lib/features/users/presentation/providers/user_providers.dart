@@ -10,15 +10,11 @@ part 'user_providers.g.dart';
 /// DI graph for the users feature.
 
 @riverpod
-UserRemoteDataSource userRemoteDataSource(Ref ref) =>
-    UserRemoteDataSource(ref.watch(dioProvider));
+UserRemoteDataSource userRemoteDataSource(Ref ref) => UserRemoteDataSource(ref.watch(dioProvider));
 
 @riverpod
-UserRepository userRepository(Ref ref) => UserRepositoryImpl(
-  ref.watch(userRemoteDataSourceProvider),
-  ref.watch(networkInfoProvider),
-);
+UserRepository userRepository(Ref ref) =>
+    UserRepositoryImpl(ref.watch(userRemoteDataSourceProvider), ref.watch(networkInfoProvider));
 
 @riverpod
-GetUsersUseCase getUsersUseCase(Ref ref) =>
-    GetUsersUseCase(ref.watch(userRepositoryProvider));
+GetUsersUseCase getUsersUseCase(Ref ref) => GetUsersUseCase(ref.watch(userRepositoryProvider));

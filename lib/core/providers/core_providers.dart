@@ -20,8 +20,7 @@ part 'core_providers.g.dart';
 // ---- Storage ---------------------------------------------------------------
 
 @Riverpod(keepAlive: true)
-FlutterSecureStorage flutterSecureStorage(Ref ref) =>
-    const FlutterSecureStorage();
+FlutterSecureStorage flutterSecureStorage(Ref ref) => const FlutterSecureStorage();
 
 @Riverpod(keepAlive: true)
 SecureStorageService secureStorageService(Ref ref) =>
@@ -54,5 +53,4 @@ Dio dio(Ref ref) => DioClient.create(
 Connectivity connectivity(Ref ref) => Connectivity();
 
 @Riverpod(keepAlive: true)
-NetworkInfo networkInfo(Ref ref) =>
-    NetworkInfoImpl(ref.watch(connectivityProvider));
+NetworkInfo networkInfo(Ref ref) => NetworkInfoImpl(ref.watch(connectivityProvider));

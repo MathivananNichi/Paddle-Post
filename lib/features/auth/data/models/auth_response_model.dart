@@ -21,6 +21,5 @@ abstract class AuthResponseModel with _$AuthResponseModel {
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
       _$AuthResponseModelFromJson(json);
 
-  AuthToken toEntity() =>
-      AuthToken(accessToken: token, refreshToken: refreshToken);
+  AuthToken toEntity() => AuthToken(accessToken: token, refreshToken: refreshToken);
 }

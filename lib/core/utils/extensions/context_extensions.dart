@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paddle_post/core/theme/paddle_post_theme_extension.dart';
 import 'package:paddle_post/l10n/generated/app_localizations.dart';
 
 /// Ergonomic shortcuts on [BuildContext] for things accessed constantly in the
@@ -8,6 +9,14 @@ extension BuildContextX on BuildContext {
   ColorScheme get colors => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
   Size get screenSize => MediaQuery.sizeOf(this);
+
+  /// Whether the active theme is in dark mode.
+  bool get isDarkMode => theme.brightness == Brightness.dark;
+
+  /// Custom design tokens for PaddlePost.
+  PaddlePostColors get paddleColors =>
+      theme.extension<PaddlePostColors>() ??
+      (isDarkMode ? PaddlePostColors.dark : PaddlePostColors.light);
 
   /// Localized strings for the current locale.
   AppLocalizations get l10n => AppLocalizations.of(this);

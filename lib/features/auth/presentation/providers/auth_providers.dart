@@ -18,8 +18,7 @@ part 'auth_providers.g.dart';
 /// provider.
 
 @riverpod
-AuthRemoteDataSource authRemoteDataSource(Ref ref) =>
-    AuthRemoteDataSource(ref.watch(dioProvider));
+AuthRemoteDataSource authRemoteDataSource(Ref ref) => AuthRemoteDataSource(ref.watch(dioProvider));
 
 @riverpod
 AuthLocalDataSource authLocalDataSource(Ref ref) =>
@@ -33,9 +32,7 @@ AuthRepository authRepository(Ref ref) => AuthRepositoryImpl(
 );
 
 @riverpod
-LoginUseCase loginUseCase(Ref ref) =>
-    LoginUseCase(ref.watch(authRepositoryProvider));
+LoginUseCase loginUseCase(Ref ref) => LoginUseCase(ref.watch(authRepositoryProvider));
 
 @riverpod
-LogoutUseCase logoutUseCase(Ref ref) =>
-    LogoutUseCase(ref.watch(authRepositoryProvider));
+LogoutUseCase logoutUseCase(Ref ref) => LogoutUseCase(ref.watch(authRepositoryProvider));

@@ -12,19 +12,14 @@ class SecureStorageService {
   final FlutterSecureStorage _storage;
 
   /// The stored access token, or `null` if none has been saved.
-  Future<String?> getAccessToken() =>
-      _storage.read(key: StorageKeys.accessToken);
+  Future<String?> getAccessToken() => _storage.read(key: StorageKeys.accessToken);
 
   /// The stored refresh token, or `null` if none has been saved.
-  Future<String?> getRefreshToken() =>
-      _storage.read(key: StorageKeys.refreshToken);
+  Future<String?> getRefreshToken() => _storage.read(key: StorageKeys.refreshToken);
 
   /// Persists [accessToken]; writes [refreshToken] only when it is non-null so
   /// an existing refresh token is not clobbered by a token-only response.
-  Future<void> saveTokens({
-    required String accessToken,
-    String? refreshToken,
-  }) async {
+  Future<void> saveTokens({required String accessToken, String? refreshToken}) async {
     await _storage.write(key: StorageKeys.accessToken, value: accessToken);
     if (refreshToken != null) {
       await _storage.write(key: StorageKeys.refreshToken, value: refreshToken);

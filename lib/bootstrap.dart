@@ -26,11 +26,7 @@ Future<void> bootstrap(Flavor flavor) async {
 
   // Errors surfaced by the Flutter framework (build/layout/paint).
   FlutterError.onError = (details) {
-    AppLogger.e(
-      'FlutterError',
-      error: details.exception,
-      stackTrace: details.stack,
-    );
+    AppLogger.e('FlutterError', error: details.exception, stackTrace: details.stack);
   };
 
   // Errors that escape the framework: async gaps, platform channels, etc.

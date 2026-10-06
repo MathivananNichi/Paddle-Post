@@ -23,8 +23,7 @@ class LoginViewModel extends _$LoginViewModel {
   void passwordChanged(String value) =>
       state = state.copyWith(password: value, status: LoginStatus.initial);
 
-  void toggleObscurePassword() =>
-      state = state.copyWith(obscurePassword: !state.obscurePassword);
+  void toggleObscurePassword() => state = state.copyWith(obscurePassword: !state.obscurePassword);
 
   /// Runs the login use case with the current credentials and folds the result
   /// into [LoginState]. On success it flips the global session status via
@@ -39,8 +38,7 @@ class LoginViewModel extends _$LoginViewModel {
         .call(LoginParams(email: state.email.trim(), password: state.password));
 
     state = result.fold(
-      (failure) =>
-          state.copyWith(status: LoginStatus.failure, failure: failure),
+      (failure) => state.copyWith(status: LoginStatus.failure, failure: failure),
       (_) => state.copyWith(status: LoginStatus.success),
     );
 

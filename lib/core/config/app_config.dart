@@ -12,11 +12,7 @@ enum Flavor { dev, staging, prod }
 /// the widget tree (and `ProviderScope`) exists, e.g. while configuring the
 /// network client.
 class AppConfig {
-  const AppConfig._({
-    required this.flavor,
-    required this.baseUrl,
-    required this.appName,
-  });
+  const AppConfig._({required this.flavor, required this.baseUrl, required this.appName});
 
   final Flavor flavor;
   final String baseUrl;

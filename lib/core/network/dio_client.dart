@@ -14,10 +14,7 @@ import 'package:paddle_post/core/network/interceptors/logging_interceptor.dart';
 class DioClient {
   const DioClient._();
 
-  static Dio create({
-    required String baseUrl,
-    required AuthInterceptor authInterceptor,
-  }) {
+  static Dio create({required String baseUrl, required AuthInterceptor authInterceptor}) {
     final dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,

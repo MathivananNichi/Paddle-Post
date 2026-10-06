@@ -34,9 +34,7 @@ class FakeAuthRepository implements AuthRepository {
 }
 
 ProviderContainer _containerWith(AuthRepository repo) {
-  final container = ProviderContainer(
-    overrides: [authRepositoryProvider.overrideWithValue(repo)],
-  );
+  final container = ProviderContainer(overrides: [authRepositoryProvider.overrideWithValue(repo)]);
   addTearDown(container.dispose);
   return container;
 }
@@ -45,9 +43,7 @@ void main() {
   group('LoginViewModel.submit', () {
     test('sets status to success and marks session authenticated', () async {
       final container = _containerWith(
-        FakeAuthRepository(
-          loginResult: const Right(AuthToken(accessToken: 'token')),
-        ),
+        FakeAuthRepository(loginResult: const Right(AuthToken(accessToken: 'token'))),
       );
       final viewModel = container.read(loginViewModelProvider.notifier);
 
@@ -55,18 +51,13 @@ void main() {
       viewModel.passwordChanged('cityslicka');
       await viewModel.submit();
 
-      expect(
-        container.read(loginViewModelProvider).status,
-        LoginStatus.success,
-      );
+      expect(container.read(loginViewModelProvider).status, LoginStatus.success);
       expect(container.read(authControllerProvider), AuthStatus.authenticated);
     });
 
     test('sets status to failure and exposes the message', () async {
       final container = _containerWith(
-        FakeAuthRepository(
-          loginResult: const Left(UnauthorizedFailure('Bad credentials')),
-        ),
+        FakeAuthRepository(loginResult: const Left(UnauthorizedFailure('Bad credentials'))),
       );
       final viewModel = container.read(loginViewModelProvider.notifier);
 

@@ -28,19 +28,11 @@ class AuthRepositoryImpl implements AuthRepository {
   final NetworkInfo _networkInfo;
 
   @override
-  Future<Either<Failure, AuthToken>> login({
-    required String email,
-    required String password,
-  }) {
+  Future<Either<Failure, AuthToken>> login({required String email, required String password}) {
     return guardApiCall(() async {
-      final response = await _remote.login(
-        LoginRequestModel(email: email, password: password),
-      );
+      final response = await _remote.login(LoginRequestModel(email: email, password: password));
       final token = response.toEntity();
-      await _local.cacheTokens(
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
-      );
+      await _local.cacheTokens(accessToken: token.accessToken, refreshToken: token.refreshToken);
       return token;
     }, networkInfo: _networkInfo);
   }

@@ -1,22 +1,48 @@
 # Continuous integration.
 #
-# Runs on every push to the primary branches and on every pull request. Acts as
-# an automatic gatekeeper: a change cannot be merged clean unless it is
-# formatted, passes static analysis, and all tests are green.
+# Runs on every push to the primary branches and on every pull request when relevant
+# files change. Acts as an automatic gatekeeper: a change cannot be merged clean
+# unless it is formatted (line-length 100), passes static analysis, and all tests are green.
 name: CI
 
 on:
   push:
     branches: [main, riverpod, riverpod-ai]
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'tool/**'
+      - 'assets/**'
+      - 'l10n.yaml'
+      - 'analysis_options.yaml'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - '.github/workflows/ci.yml'
+      - '.pre-commit-config.yaml'
   pull_request:
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'tool/**'
+      - 'assets/**'
+      - 'l10n.yaml'
+      - 'analysis_options.yaml'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - '.github/workflows/ci.yml'
+      - '.pre-commit-config.yaml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify:
     name: Format, analyze & test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -28,11 +54,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+      - name: Verify formatting (line-length 100)
+        run: dart format --line-length 100 --output=none --set-exit-if-changed .
 
-      - name: Analyze
+      - name: Run static analysis
         run: flutter analyze
 
-      - name: Run tests
+      - name: Run test suite
         run: flutter test

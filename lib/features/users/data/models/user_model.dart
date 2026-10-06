@@ -20,14 +20,8 @@ abstract class UserModel with _$UserModel {
     required String avatar,
   }) = _UserModel;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
-  AppUser toEntity() => AppUser(
-    id: id,
-    email: email,
-    firstName: firstName,
-    lastName: lastName,
-    avatarUrl: avatar,
-  );
+  AppUser toEntity() =>
+      AppUser(id: id, email: email, firstName: firstName, lastName: lastName, avatarUrl: avatar);
 }
