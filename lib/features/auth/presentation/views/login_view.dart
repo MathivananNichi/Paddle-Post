@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:paddle_post/core/utils/extensions/context_extensions.dart';
-import 'package:paddle_post/core/utils/extensions/failure_extensions.dart';
-import 'package:paddle_post/core/utils/validators.dart';
-import 'package:paddle_post/core/widgets/app_text_field.dart';
-import 'package:paddle_post/core/widgets/primary_button.dart';
+import 'package:paddle_post/core/core.dart';
 import 'package:paddle_post/features/auth/presentation/viewmodels/login_state.dart';
 import 'package:paddle_post/features/auth/presentation/viewmodels/login_view_model.dart';
 

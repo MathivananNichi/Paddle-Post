@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paddle_post/core/theme/app_colors.dart';
+import 'package:paddle_post/core/theme/app_text_theme.dart';
 import 'package:paddle_post/core/theme/paddle_post_theme_extension.dart';
 
 /// Centralised Material 3 theme definitions for PaddlePost.
@@ -9,6 +10,12 @@ import 'package:paddle_post/core/theme/paddle_post_theme_extension.dart';
 /// and `context.paddleColors` rather than hard-coding colors or text styles.
 class AppTheme {
   const AppTheme._();
+
+  /// Primary UI font family (Sora).
+  static const String fontFamily = 'Sora';
+
+  /// Scoreboard and numerical display font family (Saira Condensed).
+  static const String scoreFontFamily = 'SairaCondensed';
 
   /// Light theme definition.
   static ThemeData get light => _buildTheme(Brightness.light);
@@ -75,12 +82,9 @@ class AppTheme {
             surfaceContainerHighest: Color(0xFF222938),
           );
 
-    final baseTextTheme = Typography.material2021(
-      colorScheme: colorScheme,
-    ).black.apply(bodyColor: colorScheme.onSurface, displayColor: colorScheme.onSurface);
-
     return ThemeData(
       useMaterial3: true,
+      fontFamily: fontFamily,
       brightness: brightness,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: isLight ? AppColors.lightBackground : AppColors.darkBackground,
@@ -253,7 +257,7 @@ class AppTheme {
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-      textTheme: baseTextTheme,
+      textTheme: isLight ? AppTextTheme.light : AppTextTheme.dark,
       extensions: <ThemeExtension<dynamic>>[
         isLight ? PaddlePostColors.light : PaddlePostColors.dark,
       ],

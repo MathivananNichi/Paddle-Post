@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:paddle_post/app.dart';
-import 'package:paddle_post/core/config/app_config.dart';
-import 'package:paddle_post/core/providers/core_providers.dart';
-import 'package:paddle_post/core/utils/app_logger.dart';
+import 'package:paddle_post/core/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Shared startup routine used by every flavor entry point (e.g.
@@ -21,7 +20,10 @@ Future<void> bootstrap(Flavor flavor) async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
 
   AppConfig.init(flavor);
-
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
   final prefs = await SharedPreferences.getInstance();
 
   // Errors surfaced by the Flutter framework (build/layout/paint).

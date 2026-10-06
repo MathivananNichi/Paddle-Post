@@ -1,5 +1,5 @@
 import 'package:paddle_post/bootstrap.dart';
-import 'package:paddle_post/core/config/app_config.dart';
+import 'package:paddle_post/core/core.dart';
 
 /// Default entry point (dev flavor).
 ///
