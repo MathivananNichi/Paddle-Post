@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/error/failures.dart';
-import 'package:flutter_base_project/core/theme/theme_controller.dart';
-import 'package:flutter_base_project/core/utils/extensions/context_extensions.dart';
-import 'package:flutter_base_project/core/utils/extensions/failure_extensions.dart';
-import 'package:flutter_base_project/core/widgets/empty_view.dart';
-import 'package:flutter_base_project/core/widgets/error_view.dart';
-import 'package:flutter_base_project/core/widgets/loading_view.dart';
-import 'package:flutter_base_project/features/auth/presentation/viewmodels/auth_controller.dart';
-import 'package:flutter_base_project/features/users/domain/entities/app_user.dart';
-import 'package:flutter_base_project/features/users/presentation/viewmodels/users_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:paddle_post/core/error/failures.dart';
+import 'package:paddle_post/core/theme/theme_controller.dart';
+import 'package:paddle_post/core/utils/extensions/context_extensions.dart';
+import 'package:paddle_post/core/utils/extensions/failure_extensions.dart';
+import 'package:paddle_post/core/widgets/empty_view.dart';
+import 'package:paddle_post/core/widgets/error_view.dart';
+import 'package:paddle_post/core/widgets/loading_view.dart';
+import 'package:paddle_post/features/auth/presentation/viewmodels/auth_controller.dart';
+import 'package:paddle_post/features/users/domain/entities/app_user.dart';
+import 'package:paddle_post/features/users/presentation/viewmodels/users_view_model.dart';
 
 /// View for the users list. Renders the three states of the async ViewModel
 /// (loading / data / error) and offers pull-to-refresh, a theme toggle and

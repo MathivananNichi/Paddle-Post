@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/bootstrap.dart';
-import 'package:flutter_base_project/core/config/app_config.dart';
+import 'package:paddle_post/bootstrap.dart';
+import 'package:paddle_post/core/config/app_config.dart';
 
 /// Entry point for the **staging** flavor.
 ///

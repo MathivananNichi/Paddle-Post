@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/core/usecase/usecase.dart';
-import 'package:flutter_base_project/features/auth/presentation/providers/auth_providers.dart';
+import 'package:paddle_post/core/usecase/usecase.dart';
+import 'package:paddle_post/features/auth/presentation/providers/auth_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_controller.g.dart';

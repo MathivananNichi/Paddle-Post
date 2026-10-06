@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/utils/extensions/context_extensions.dart';
+import 'package:paddle_post/core/utils/extensions/context_extensions.dart';
 
 /// Placeholder shown when a screen has loaded successfully but has no data.
 ///

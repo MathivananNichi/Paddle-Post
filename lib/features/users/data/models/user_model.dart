@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/features/users/domain/entities/app_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:paddle_post/features/users/domain/entities/app_user.dart';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';

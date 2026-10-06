@@ -6,7 +6,7 @@ class AppConstants {
   const AppConstants._();
 
   /// Human readable application name.
-  static const String appName = 'Flutter Base Project';
+  static const String appName = 'Paddle Post';
 
   /// Default number of items requested per page for paginated endpoints.
   static const int defaultPageSize = 10;

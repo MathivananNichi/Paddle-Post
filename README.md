@@ -1,4 +1,4 @@
-# Flutter Base Project
+# Paddle Post
 
 A production-ready Flutter starter built on **MVVM + Clean Architecture**, with a
 clear, feature-first folder structure and a modern, fully wired tech stack.
@@ -279,7 +279,7 @@ dart run build_runner watch --delete-conflicting-outputs
 ```bash
 # 0. Rebrand the clone (package id + app name), then re-run pub get/fix
 #    it triggers for you as part of the script
-dart run tool/rename_project.dart --package-name=com.company.app --app-name="My App"
+dart run tool/rename_project.dart --package-name=com.company.app --app-name="Paddle Post"
 
 # 1. Install dependencies
 flutter pub get
@@ -300,7 +300,7 @@ flutter test
 | File(s) | What gets replaced |
 |---|---|
 | `pubspec.yaml` | `name:` (Dart package name, derived from `--app-name`) and `description:` |
-| `lib/**/*.dart`, `test/**/*.dart` | Every `package:flutter_base_project/...` import; the `AppConstants.appName` string |
+| `lib/**/*.dart`, `test/**/*.dart` | Every `package:paddle_post/...` import; the `AppConstants.appName` string |
 | `lib/l10n/app_en.arb` | The `appTitle` value |
 | `android/app/build.gradle.kts` | `namespace` and `applicationId` |
 | `android/.../AndroidManifest.xml` | `android:label` (points at `@string/app_name`, unchanged by the script) |

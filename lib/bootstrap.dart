@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app.dart';
-import 'package:flutter_base_project/core/config/app_config.dart';
-import 'package:flutter_base_project/core/providers/core_providers.dart';
-import 'package:flutter_base_project/core/utils/app_logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:paddle_post/app.dart';
+import 'package:paddle_post/core/config/app_config.dart';
+import 'package:paddle_post/core/providers/core_providers.dart';
+import 'package:paddle_post/core/utils/app_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Shared startup routine used by every flavor entry point (e.g.

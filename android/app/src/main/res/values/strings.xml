@@ -4,5 +4,5 @@
          it must live here rather than in the Dart/ARB localization system.
          Add values-<locale>/strings.xml overrides (e.g. values-fr/) to
          localize it per device language. -->
-    <string name="app_name">Flutter Base Project</string>
+    <string name="app_name">Paddle Post</string>
 </resources>

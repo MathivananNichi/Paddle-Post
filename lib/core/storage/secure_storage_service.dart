@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/core/constants/storage_keys.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:paddle_post/core/constants/storage_keys.dart';
 
 /// Wrapper around [FlutterSecureStorage] for **sensitive** data (auth tokens,
 /// credentials). Values are encrypted by the platform keystore/keychain.

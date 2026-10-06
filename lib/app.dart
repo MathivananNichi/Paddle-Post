@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/config/app_config.dart';
-import 'package:flutter_base_project/core/router/app_router.dart';
-import 'package:flutter_base_project/core/theme/app_theme.dart';
-import 'package:flutter_base_project/core/theme/theme_controller.dart';
-import 'package:flutter_base_project/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:paddle_post/core/config/app_config.dart';
+import 'package:paddle_post/core/router/app_router.dart';
+import 'package:paddle_post/core/theme/app_theme.dart';
+import 'package:paddle_post/core/theme/theme_controller.dart';
+import 'package:paddle_post/l10n/generated/app_localizations.dart';
 
 /// Root widget of the application.
 ///

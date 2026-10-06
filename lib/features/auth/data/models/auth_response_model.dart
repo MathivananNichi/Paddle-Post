@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/features/auth/domain/entities/auth_token.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:paddle_post/features/auth/domain/entities/auth_token.dart';
 
 part 'auth_response_model.freezed.dart';
 part 'auth_response_model.g.dart';

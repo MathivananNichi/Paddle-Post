@@ -1,5 +1,5 @@
-name: flutter_base_project
-description: "A Flutter base project: MVVM + Clean Architecture with Riverpod, Retrofit, Freezed and go_router."
+name: paddle_post
+description: "Gaming dashboard"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

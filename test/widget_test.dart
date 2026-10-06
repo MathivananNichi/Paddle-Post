@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/features/auth/presentation/views/login_view.dart';
-import 'package:flutter_base_project/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:paddle_post/features/auth/presentation/views/login_view.dart';
+import 'package:paddle_post/l10n/generated/app_localizations.dart';
 
 void main() {
   testWidgets('LoginView renders its fields and submit button', (tester) async {

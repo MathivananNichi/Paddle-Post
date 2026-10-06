@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_base_project/core/error/failures.dart';
-import 'package:flutter_base_project/core/usecase/usecase.dart';
-import 'package:flutter_base_project/features/users/domain/entities/app_user.dart';
-import 'package:flutter_base_project/features/users/domain/repositories/user_repository.dart';
+import 'package:paddle_post/core/error/failures.dart';
+import 'package:paddle_post/core/usecase/usecase.dart';
+import 'package:paddle_post/features/users/domain/entities/app_user.dart';
+import 'package:paddle_post/features/users/domain/repositories/user_repository.dart';
 
 /// Use case: fetch a page of users.
 class GetUsersUseCase implements UseCase<List<AppUser>, GetUsersParams> {

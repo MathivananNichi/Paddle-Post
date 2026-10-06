@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/core/error/failures.dart';
-import 'package:flutter_base_project/l10n/generated/app_localizations.dart';
+import 'package:paddle_post/core/error/failures.dart';
+import 'package:paddle_post/l10n/generated/app_localizations.dart';
 
 /// Maps a domain [Failure] to a user-facing, **localized** message.
 ///

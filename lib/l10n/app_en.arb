@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
 
-  "appTitle": "Flutter Base Project",
+  "appTitle": "Paddle Post",
   "@appTitle": {
     "description": "Application title shown by the OS (task switcher, etc.)."
   },

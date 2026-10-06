@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/providers/core_providers.dart';
+import 'package:paddle_post/core/providers/core_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'theme_controller.g.dart';

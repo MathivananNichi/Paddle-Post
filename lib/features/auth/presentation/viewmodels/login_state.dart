@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/core/error/failures.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:paddle_post/core/error/failures.dart';
 
 part 'login_state.freezed.dart';
 

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_base_project/core/error/failures.dart';
-import 'package:flutter_base_project/core/network/api_error_mapper.dart';
-import 'package:flutter_base_project/core/network/network_info.dart';
-import 'package:flutter_base_project/features/users/data/datasources/user_remote_data_source.dart';
-import 'package:flutter_base_project/features/users/domain/entities/app_user.dart';
-import 'package:flutter_base_project/features/users/domain/repositories/user_repository.dart';
+import 'package:paddle_post/core/error/failures.dart';
+import 'package:paddle_post/core/network/api_error_mapper.dart';
+import 'package:paddle_post/core/network/network_info.dart';
+import 'package:paddle_post/features/users/data/datasources/user_remote_data_source.dart';
+import 'package:paddle_post/features/users/domain/entities/app_user.dart';
+import 'package:paddle_post/features/users/domain/repositories/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._remote, this._networkInfo);

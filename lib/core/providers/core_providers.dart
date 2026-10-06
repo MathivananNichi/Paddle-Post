@@ -1,12 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_base_project/core/config/app_config.dart';
-import 'package:flutter_base_project/core/network/dio_client.dart';
-import 'package:flutter_base_project/core/network/interceptors/auth_interceptor.dart';
-import 'package:flutter_base_project/core/network/network_info.dart';
-import 'package:flutter_base_project/core/storage/preferences_service.dart';
-import 'package:flutter_base_project/core/storage/secure_storage_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:paddle_post/core/config/app_config.dart';
+import 'package:paddle_post/core/network/dio_client.dart';
+import 'package:paddle_post/core/network/interceptors/auth_interceptor.dart';
+import 'package:paddle_post/core/network/network_info.dart';
+import 'package:paddle_post/core/storage/preferences_service.dart';
+import 'package:paddle_post/core/storage/secure_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

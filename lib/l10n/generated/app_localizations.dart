@@ -97,7 +97,7 @@ abstract class AppLocalizations {
   /// Application title shown by the OS (task switcher, etc.).
   ///
   /// In en, this message translates to:
-  /// **'Flutter Base Project'**
+  /// **'Paddle Post'**
   String get appTitle;
 
   /// Login screen app bar title.
