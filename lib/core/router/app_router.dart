@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paddle_post/core/router/app_routes.dart';
 import 'package:paddle_post/features/auth/presentation/viewmodels/auth_controller.dart';
 import 'package:paddle_post/features/auth/presentation/views/login_view.dart';
-import 'package:paddle_post/features/spalsh/presentation/view/splash_screen.dart';
+import 'package:paddle_post/features/paddle_post/presentation/view/paddle_post_screen.dart';
+import 'package:paddle_post/features/splash/presentation/view/splash_screen.dart';
 import 'package:paddle_post/features/users/presentation/views/users_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -30,39 +32,50 @@ GoRouter goRouter(Ref ref) {
     initialLocation: AppRoutes.splash,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: refresh,
-    // redirect: (context, state) {
-    //   final status = ref.read(authControllerProvider);
-    //   final location = state.matchedLocation;
-    //
-    //   if (status == AuthStatus.unknown) {
-    //     return location == AppRoutes.splash ? null : AppRoutes.splash;
-    //   }
-    //
-    //   final isLoggedIn = status == AuthStatus.authenticated;
-    //   final isOnLoginFlow = location == AppRoutes.login || location == AppRoutes.splash;
-    //
-    //   if (!isLoggedIn) {
-    //     return location == AppRoutes.login ? null : AppRoutes.login;
-    //   }
-    //   if (isOnLoginFlow) return AppRoutes.users;
-    //   return null;
-    // },
     routes: [
       GoRoute(
         path: AppRoutes.splash,
         name: AppRoutes.splashName,
-        builder: (context, state) => const SplashScreen(),
+        pageBuilder: (context, state) =>
+            _fadeTransitionPage(key: state.pageKey, child: const SplashScreen()),
       ),
       GoRoute(
         path: AppRoutes.login,
         name: AppRoutes.loginName,
-        builder: (context, state) => const LoginView(),
+        pageBuilder: (context, state) =>
+            _fadeTransitionPage(key: state.pageKey, child: const LoginView()),
       ),
       GoRoute(
         path: AppRoutes.users,
         name: AppRoutes.usersName,
-        builder: (context, state) => const UsersView(),
+        pageBuilder: (context, state) =>
+            _fadeTransitionPage(key: state.pageKey, child: const UsersView()),
+      ),
+      GoRoute(
+        path: AppRoutes.paddlePost,
+        name: AppRoutes.paddlePostName,
+        pageBuilder: (context, state) =>
+            _fadeTransitionPage(key: state.pageKey, child: const PaddlePostScreen()),
       ),
     ],
+  );
+}
+
+/// Helper building a smooth fade transition between routes.
+CustomTransitionPage<void> _fadeTransitionPage({
+  required LocalKey key,
+  required Widget child,
+  Duration duration = const Duration(milliseconds: 300),
+}) {
+  return CustomTransitionPage<void>(
+    key: key,
+    child: child,
+    transitionDuration: duration,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: CurveTween(curve: Curves.easeInOut).animate(animation),
+        child: child,
+      );
+    },
   );
 }

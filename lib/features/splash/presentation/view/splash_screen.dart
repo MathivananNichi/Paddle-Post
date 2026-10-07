@@ -1,0 +1,116 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:paddle_post/core/core.dart';
+import 'package:paddle_post/features/splash/presentation/widgets/widgets.dart';
+
+/// The initial splash screen displaying animated bouncing balls, logo reveal, and startup progress.
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  final GlobalKey<SplashTextAnimationState> _textAnimKey = GlobalKey<SplashTextAnimationState>();
+  final GlobalKey<SplashProgressIndicatorState> _progressKey =
+      GlobalKey<SplashProgressIndicatorState>();
+
+  bool _textAnimationStarted = false;
+  bool _progressAnimationStarted = false;
+
+  void _onBallAnimationProgress(double progress) {
+    if (progress > 0.4 && !_textAnimationStarted) {
+      _textAnimationStarted = true;
+      _textAnimKey.currentState?.play();
+    }
+  }
+
+  void _onTextAnimationProgress(double progress) {
+    if (progress > 0.5 && !_progressAnimationStarted) {
+      _progressAnimationStarted = true;
+      _progressKey.currentState?.play();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.sizeOf(context);
+
+    return AppScaffold(
+      safeAreaTop: false,
+      body: Center(
+        child: Stack(
+          children: [
+            // Background glow
+            Positioned.fill(child: Container(decoration: AppDecoration.splashBackgroundGlow)),
+
+            Column(
+              children: [
+                SizedBox(height: screenSize.height * 0.32),
+                BouncingBall(gap: 10, onChangeAnimation: _onBallAnimationProgress),
+                const SizedBox(height: AppSize.s10),
+                SplashTextAnimation(
+                  key: _textAnimKey,
+                  onChangeAnimation: _onTextAnimationProgress,
+                  children: [
+                    const _PaddlePostLogo(),
+                    AppText(
+                      context.l10n.scoringCompanion,
+                      style: const TextStyle(
+                        fontSize: AppFontSize.s12,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 2.5,
+                        color: AppColors.darkTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                SizedBox(
+                  width: screenSize.width * 0.35,
+                  child: SplashProgressIndicator(
+                    key: _progressKey,
+                    onComplete: () {
+                      if (mounted) {
+                        context.goNamed(AppRoutes.paddlePostName);
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: screenSize.height * 0.08),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Logo text combining two theme colors.
+class _PaddlePostLogo extends StatelessWidget {
+  const _PaddlePostLogo();
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: const TextSpan(
+        text: 'PADDLE',
+        style: TextStyle(
+          color: AppColors.paddleColor1,
+          fontSize: 36,
+          fontWeight: FontWeight.w700,
+          fontFamily: AppTextTheme.fontFamily,
+          letterSpacing: 1.5,
+        ),
+        children: [
+          TextSpan(
+            text: 'POST',
+            style: TextStyle(color: AppColors.paddleColor2),
+          ),
+        ],
+      ),
+    );
+  }
+}

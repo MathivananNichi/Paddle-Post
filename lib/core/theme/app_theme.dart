@@ -37,7 +37,7 @@ class AppTheme {
             onSecondary: Colors.white,
             secondaryContainer: AppColors.player2Tint,
             onSecondaryContainer: AppColors.secondaryLight,
-            tertiary: AppColors.secondaryPurple,
+            tertiary: AppColors.primaryLight,
             onTertiary: Colors.white,
             error: AppColors.error,
             onError: Colors.white,
@@ -56,7 +56,7 @@ class AppTheme {
           )
         : const ColorScheme(
             brightness: Brightness.dark,
-            primary: AppColors.player1Dark,
+            primary: AppColors.primary,
             onPrimary: Color(0xFF002B75),
             primaryContainer: AppColors.primary,
             onPrimaryContainer: AppColors.player1Tint,
@@ -64,7 +64,7 @@ class AppTheme {
             onSecondary: Color(0xFF4E2600),
             secondaryContainer: AppColors.secondaryOrange,
             onSecondaryContainer: AppColors.player2Tint,
-            tertiary: AppColors.secondaryPurple,
+            tertiary: AppColors.player1Glow,
             onTertiary: Colors.white,
             error: AppColors.darkError,
             onError: Color(0xFF450A0A),
@@ -197,7 +197,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           minimumSize: const Size.fromHeight(50),
-          backgroundColor: isLight ? AppColors.lightSurface : AppColors.darkSurface,
+          backgroundColor: isLight ? AppColors.darkBackground : AppColors.darkSurface,
           foregroundColor: colorScheme.onSurface,
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -258,9 +258,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       textTheme: isLight ? AppTextTheme.light : AppTextTheme.dark,
-      extensions: <ThemeExtension<dynamic>>[
-        isLight ? PaddlePostColors.light : PaddlePostColors.dark,
-      ],
+      extensions: isLight ? const [PaddlePostColors.light] : const [PaddlePostColors.dark],
     );
   }
 }

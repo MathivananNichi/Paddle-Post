@@ -98,6 +98,60 @@ abstract class AppLocalizations {
   /// **'Paddle Post'**
   String get appTitle;
 
+  /// Subtitle displayed beneath the app logo on the splash screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Scoring Companion'**
+  String get scoringCompanion;
+
+  /// Status text displayed above the progress indicator on the splash screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting Up'**
+  String get startingUp;
+
+  /// Overline tag displayed during the one-time device setup.
+  ///
+  /// In en, this message translates to:
+  /// **'ONE-TIME SETUP'**
+  String get oneTimeSetup;
+
+  /// Main title on the connect PaddlePost screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s connect your PaddlePost.'**
+  String get connectPaddlePostTitle;
+
+  /// First instruction step for connecting PaddlePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch on the scoring unit. The light on the base comes on.'**
+  String get connectStep1;
+
+  /// Second instruction step for connecting PaddlePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this phone close to the base.'**
+  String get connectStep2;
+
+  /// Button label to connect to the PaddlePost unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get connectDevice;
+
+  /// Loading state while discovering the PaddlePost unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for PaddlePost...'**
+  String get lookingForDevice;
+
+  /// Action label or title to find and discover the PaddlePost device.
+  ///
+  /// In en, this message translates to:
+  /// **'Find my PaddlePost'**
+  String get findMyPaddlePost;
+
   /// Login screen app bar title.
   ///
   /// In en, this message translates to:

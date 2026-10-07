@@ -54,7 +54,7 @@ class PaddlePostColors extends ThemeExtension<PaddlePostColors> {
   final Color warning;
   final Color danger;
 
-  /// Dark theme token instance.
+  /// Dark theme token instance (Exact specification from HTML prototype).
   static const dark = PaddlePostColors(
     panelBackground: AppColors.darkPanel,
     surfaceHighlight: AppColors.darkSurfaceHighlight,

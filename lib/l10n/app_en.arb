@@ -5,6 +5,43 @@
   "@appTitle": {
     "description": "Application title shown by the OS (task switcher, etc.)."
   },
+  "scoringCompanion": "Scoring Companion",
+  "@scoringCompanion": {
+    "description": "Subtitle displayed beneath the app logo on the splash screen."
+  },
+  "startingUp": "Starting Up",
+  "@startingUp": {
+    "description": "Status text displayed above the progress indicator on the splash screen."
+  },
+
+  "oneTimeSetup": "ONE-TIME SETUP",
+  "@oneTimeSetup": {
+    "description": "Overline tag displayed during the one-time device setup."
+  },
+  "connectPaddlePostTitle": "Let's connect your PaddlePost.",
+  "@connectPaddlePostTitle": {
+    "description": "Main title on the connect PaddlePost screen."
+  },
+  "connectStep1": "Switch on the scoring unit. The light on the base comes on.",
+  "@connectStep1": {
+    "description": "First instruction step for connecting PaddlePost."
+  },
+  "connectStep2": "Keep this phone close to the base.",
+  "@connectStep2": {
+    "description": "Second instruction step for connecting PaddlePost."
+  },
+  "connectDevice": "Connect",
+  "@connectDevice": {
+    "description": "Button label to connect to the PaddlePost unit."
+  },
+  "lookingForDevice": "Looking for PaddlePost...",
+  "@lookingForDevice": {
+    "description": "Loading state while discovering the PaddlePost unit."
+  },
+  "findMyPaddlePost": "Find my PaddlePost",
+  "@findMyPaddlePost": {
+    "description": "Action label or title to find and discover the PaddlePost device."
+  },
 
   "signInAppBarTitle": "Sign in",
   "@signInAppBarTitle": {

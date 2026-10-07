@@ -13,7 +13,6 @@ extension BuildContextX on BuildContext {
   /// Whether the active theme is in dark mode.
   bool get isDarkMode => theme.brightness == Brightness.dark;
 
-  /// Custom design tokens for PaddlePost.
   PaddlePostColors get paddleColors =>
       theme.extension<PaddlePostColors>() ??
       (isDarkMode ? PaddlePostColors.dark : PaddlePostColors.light);
@@ -27,4 +26,6 @@ extension BuildContextX on BuildContext {
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
   }
+
+  EdgeInsets get safeArea => MediaQuery.of(this).padding;
 }

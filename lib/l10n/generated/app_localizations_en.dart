@@ -12,6 +12,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Paddle Post';
 
   @override
+  String get scoringCompanion => 'Scoring Companion';
+
+  @override
+  String get startingUp => 'Starting Up';
+
+  @override
+  String get oneTimeSetup => 'ONE-TIME SETUP';
+
+  @override
+  String get connectPaddlePostTitle => 'Let\'s connect your PaddlePost.';
+
+  @override
+  String get connectStep1 => 'Switch on the scoring unit. The light on the base comes on.';
+
+  @override
+  String get connectStep2 => 'Keep this phone close to the base.';
+
+  @override
+  String get connectDevice => 'Connect';
+
+  @override
+  String get lookingForDevice => 'Looking for PaddlePost...';
+
+  @override
+  String get findMyPaddlePost => 'Find my PaddlePost';
+
+  @override
   String get signInAppBarTitle => 'Sign in';
 
   @override
