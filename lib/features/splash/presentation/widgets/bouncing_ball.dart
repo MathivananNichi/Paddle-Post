@@ -118,8 +118,8 @@ class _BouncingBallState extends State<BouncingBall> with SingleTickerProviderSt
                       child: Opacity(
                         opacity: _fadeAnimation.value,
                         child: _GlowingBall(
-                          color: context.paddleColors.player1,
-                          glowColor: context.paddleColors.player1Glow,
+                          color: AppColors.darkPlayer1Glow,
+                          glowColor: AppColors.darkPlayer1Glow,
                           size: ballSize,
                         ),
                       ),
@@ -131,8 +131,8 @@ class _BouncingBallState extends State<BouncingBall> with SingleTickerProviderSt
                       child: Opacity(
                         opacity: _fadeAnimation.value,
                         child: _GlowingBall(
-                          color: context.paddleColors.player2Glow,
-                          glowColor: context.paddleColors.player2Glow,
+                          color: AppColors.darkPlayer2Glow,
+                          glowColor: AppColors.darkPlayer2Glow,
                           size: ballSize,
                         ),
                       ),

@@ -19,7 +19,7 @@ class App extends ConsumerWidget {
       title: AppConfig.instance.appName,
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.dark,
+      theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

@@ -43,7 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Stack(
           children: [
             // Background glow
-            Positioned.fill(child: Container(decoration: AppDecoration.splashBackgroundGlow)),
+            if (context.isDarkMode)
+              Positioned.fill(child: Container(decoration: AppDecoration.splashBackgroundGlow)),
 
             Column(
               children: [
