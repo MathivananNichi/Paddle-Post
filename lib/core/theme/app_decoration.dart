@@ -95,14 +95,82 @@ class AppDecoration {
     );
   }
 
-  /// Pill badge container decoration.
-  static BoxDecoration badge({
+  // ---------------------------------------------------------------------------
+  // Status, Chips & Badges
+  // ---------------------------------------------------------------------------
+
+  /// Status badge / card container decoration.
+  static BoxDecoration statusCapsule({
     required Color color,
-    BorderRadiusGeometry borderRadius = AppRadius.badge,
-    Border? border,
+    Color? borderColor,
+    BorderRadiusGeometry borderRadius = AppRadius.all16,
   }) {
-    return BoxDecoration(color: color, borderRadius: borderRadius, border: border);
+    return BoxDecoration(
+      color: color,
+      border: borderColor != null ? Border.all(color: borderColor) : null,
+      borderRadius: borderRadius,
+    );
   }
+
+  /// Status dot glowing indicator decoration.
+  static BoxDecoration statusDot({
+    required Color color,
+    double blurRadius = 10.0,
+    double spreadRadius = 1.0,
+  }) {
+    return BoxDecoration(
+      shape: BoxShape.circle,
+      color: color,
+      boxShadow: [BoxShadow(blurRadius: blurRadius, spreadRadius: spreadRadius, color: color)],
+    );
+  }
+
+  /// Circular container decoration with optional border.
+  static BoxDecoration circle({required Color color, Border? border}) {
+    return BoxDecoration(shape: BoxShape.circle, color: color, border: border);
+  }
+
+  /// Device card container decoration with custom border.
+  static BoxDecoration deviceCard({
+    required Color color,
+    Color borderColor = AppColors.deviceBorder,
+    BorderRadiusGeometry borderRadius = AppRadius.all18,
+  }) {
+    return BoxDecoration(
+      color: color,
+      border: Border.all(color: borderColor),
+      borderRadius: borderRadius,
+    );
+  }
+
+  /// Floating toast capsule decoration.
+  static BoxDecoration toast({
+    Color backgroundColor = AppColors.darkSurface,
+    Color borderColor = AppColors.success,
+    double borderWidth = 1.2,
+    BorderRadiusGeometry borderRadius = AppRadius.pill,
+    List<BoxShadow>? shadows,
+  }) {
+    return BoxDecoration(
+      color: backgroundColor,
+      border: Border.all(color: borderColor, width: borderWidth),
+      borderRadius: borderRadius,
+      boxShadow:
+          shadows ??
+          [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.45),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+    );
+  }
+
+  /// Sweeping shine diagonal gradient decoration for animated shine buttons.
+  static const BoxDecoration shineGradient = BoxDecoration(
+    gradient: LinearGradient(colors: [Color(0x00FFFFFF), Color(0x73FFFFFF), Color(0x00FFFFFF)]),
+  );
 
   // ---------------------------------------------------------------------------
   // Splash Presets

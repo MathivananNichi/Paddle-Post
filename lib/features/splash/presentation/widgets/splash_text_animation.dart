@@ -9,6 +9,8 @@ class SplashTextAnimation extends StatefulWidget {
     this.duration = const Duration(milliseconds: 500),
     this.onAnimationComplete,
     this.onChangeAnimation,
+    this.spacing = 10,
+    this.bottomOffset = 30,
   });
 
   /// The list of widgets to animate sequentially.
@@ -16,6 +18,10 @@ class SplashTextAnimation extends StatefulWidget {
 
   /// Stagger delay between consecutive child animations.
   final double delay;
+  final double bottomOffset;
+
+  /// Stagger delay between consecutive child animations.
+  final double spacing;
 
   /// Total duration of the animation sequence.
   final Duration duration;
@@ -25,6 +31,7 @@ class SplashTextAnimation extends StatefulWidget {
 
   /// Callback invoked whenever the animation progress value changes.
   final ValueChanged<double>? onChangeAnimation;
+
   @override
   State<SplashTextAnimation> createState() => SplashTextAnimationState();
 }
@@ -51,7 +58,14 @@ class SplashTextAnimationState extends State<SplashTextAnimation>
   /// Triggers the forward animation playback.
   void play() {
     if (!_controller.isAnimating && !_controller.isCompleted) {
-      _controller.forward();
+      _controller.forward(from: 0);
+    }
+  }
+
+  /// Triggers the forward animation playback.
+  void reset() {
+    if (!_controller.isAnimating && !_controller.isCompleted) {
+      _controller.reset();
     }
   }
 
@@ -67,9 +81,9 @@ class SplashTextAnimationState extends State<SplashTextAnimation>
       builder: (context, _) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          spacing: 10,
+          spacing: widget.spacing,
           children: List.generate(count, (index) {
-            const double bottomOffset = 30.0;
+            final double bottomOffset = widget.bottomOffset;
 
             final start = (index * widget.delay).clamp(0.0, 1.0);
             final end = (start + itemDuration).clamp(0.0, 1.0);

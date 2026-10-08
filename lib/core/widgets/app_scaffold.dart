@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:paddle_post/core/adaptive/adaptive.dart';
+import 'package:paddle_post/core/constants/app_padding.dart';
 import 'package:paddle_post/core/constants/app_size.dart';
 import 'package:paddle_post/core/utils/extensions/context_extensions.dart';
 import 'package:paddle_post/core/widgets/loading_view.dart';
@@ -109,9 +111,10 @@ class AppScaffold extends StatelessWidget {
 
     Widget content = body;
 
-    if (padding != null && padding != EdgeInsets.zero) {
-      content = Padding(padding: padding!, child: content);
-    }
+    content = Padding(
+      padding: padding ?? const EdgeInsets.only(top: AppPadding.p16),
+      child: content,
+    );
 
     if (safeArea) {
       content = SafeArea(
@@ -134,17 +137,19 @@ class AppScaffold extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      backgroundColor: scaffoldBg,
-      appBar: appBar ?? _buildDefaultAppBar(context),
-      body: content,
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: floatingActionButtonLocation,
-      bottomNavigationBar: bottomNavigationBar,
-      bottomSheet: bottomSheet,
-      drawer: drawer,
-      endDrawer: endDrawer,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+    return AdaptiveScale(
+      child: Scaffold(
+        backgroundColor: scaffoldBg,
+        appBar: appBar ?? _buildDefaultAppBar(context),
+        body: content,
+        floatingActionButton: floatingActionButton,
+        floatingActionButtonLocation: floatingActionButtonLocation,
+        bottomNavigationBar: bottomNavigationBar,
+        bottomSheet: bottomSheet,
+        drawer: drawer,
+        endDrawer: endDrawer,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      ),
     );
   }
 

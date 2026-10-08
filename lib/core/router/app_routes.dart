@@ -9,10 +9,12 @@ class AppRoutes {
   static const String login = '/login';
   static const String users = '/users';
   static const String paddlePost = '/paddle-post';
+  static const String home = '/home';
 
   // Named routes
   static const String splashName = 'splash';
   static const String loginName = 'login';
   static const String usersName = 'users';
   static const String paddlePostName = 'paddle-post';
+  static const String homeName = 'home';
 }

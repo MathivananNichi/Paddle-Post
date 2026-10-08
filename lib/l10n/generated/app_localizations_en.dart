@@ -39,6 +39,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get findMyPaddlePost => 'Find my PaddlePost';
 
   @override
+  String get pair => 'Pair';
+
+  @override
+  String get pairing => 'Pairing...';
+
+  @override
+  String get paired => 'Paired';
+
+  @override
+  String get pairedSuccessfully => 'Paired successfully';
+
+  @override
+  String get unpair => 'Unpair';
+
+  @override
+  String get foundIt => 'Found it.';
+
+  @override
+  String get tapModuleToPair => 'Tap your module to pair. You only do this once on this phone.';
+
+  @override
+  String get youreAllSet => 'You\'re all set.';
+
+  @override
+  String reconnectOnItsOwn(String deviceName) {
+    return 'This phone will reconnect to $deviceName on its own from now on. No setup before games.';
+  }
+
+  @override
+  String get lookingForYourModule => 'Looking for your module…';
+
+  @override
+  String get thisTakesAFewSeconds => 'This takes a few seconds.';
+
+  @override
+  String get letsPlay => 'Let\'s play';
+
+  @override
   String get signInAppBarTitle => 'Sign in';
 
   @override
@@ -85,4 +123,59 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failureUnknown => 'An unexpected error occurred';
+
+  @override
+  String get soundOn => 'Sound on';
+
+  @override
+  String get soundOff => 'Sound off';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String signalStrongBattery(String batteryPercent) {
+    return 'Signal strong · Battery $batteryPercent';
+  }
+
+  @override
+  String get standardGame => 'STANDARD GAME';
+
+  @override
+  String get player1 => 'Player 1';
+
+  @override
+  String get player2 => 'Player 2';
+
+  @override
+  String get vs => 'vs';
+
+  @override
+  String get pointsToWin => 'points to win';
+
+  @override
+  String get winBy => 'win by';
+
+  @override
+  String get toReturn => 'to return';
+
+  @override
+  String get startGame => 'Start game';
+
+  @override
+  String get customGame => 'Custom game';
+
+  @override
+  String get customGameSubtitle => 'Shorter game or your own names';
+
+  @override
+  String get lastMatch => 'LAST MATCH';
+
+  @override
+  String lastMatchTime(String time) {
+    return 'LAST MATCH · $time';
+  }
+
+  @override
+  String get allMatches => 'All matches';
 }

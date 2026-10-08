@@ -152,6 +152,78 @@ abstract class AppLocalizations {
   /// **'Find my PaddlePost'**
   String get findMyPaddlePost;
 
+  /// Button label to pair with a device.
+  ///
+  /// In en, this message translates to:
+  /// **'Pair'**
+  String get pair;
+
+  /// Status text while pairing with a device.
+  ///
+  /// In en, this message translates to:
+  /// **'Pairing...'**
+  String get pairing;
+
+  /// Status label indicating a device is successfully paired.
+  ///
+  /// In en, this message translates to:
+  /// **'Paired'**
+  String get paired;
+
+  /// Toast notification message when device is paired successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Paired successfully'**
+  String get pairedSuccessfully;
+
+  /// Button label to unpair a device.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpair'**
+  String get unpair;
+
+  /// Title when the PaddlePost module is found.
+  ///
+  /// In en, this message translates to:
+  /// **'Found it.'**
+  String get foundIt;
+
+  /// Instruction subtitle prompting the user to tap the module to pair.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap your module to pair. You only do this once on this phone.'**
+  String get tapModuleToPair;
+
+  /// Title displayed when device pairing is completed.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all set.'**
+  String get youreAllSet;
+
+  /// Message informing the user that the phone will auto-reconnect to the device.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone will reconnect to {deviceName} on its own from now on. No setup before games.'**
+  String reconnectOnItsOwn(String deviceName);
+
+  /// Title displayed while searching for the module.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for your module…'**
+  String get lookingForYourModule;
+
+  /// Subtitle displayed while search is in progress.
+  ///
+  /// In en, this message translates to:
+  /// **'This takes a few seconds.'**
+  String get thisTakesAFewSeconds;
+
+  /// Button label to start playing after device setup is completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s play'**
+  String get letsPlay;
+
   /// Login screen app bar title.
   ///
   /// In en, this message translates to:
@@ -247,6 +319,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred'**
   String get failureUnknown;
+
+  /// Label for sound enabled status/action chip on home screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound on'**
+  String get soundOn;
+
+  /// Label for sound disabled status/action chip on home screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound off'**
+  String get soundOff;
+
+  /// Label for settings action chip on home screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Signal and battery status text for device card.
+  ///
+  /// In en, this message translates to:
+  /// **'Signal strong · Battery {batteryPercent}'**
+  String signalStrongBattery(String batteryPercent);
+
+  /// Tag title for standard game mode.
+  ///
+  /// In en, this message translates to:
+  /// **'STANDARD GAME'**
+  String get standardGame;
+
+  /// Label for Player 1.
+  ///
+  /// In en, this message translates to:
+  /// **'Player 1'**
+  String get player1;
+
+  /// Label for Player 2.
+  ///
+  /// In en, this message translates to:
+  /// **'Player 2'**
+  String get player2;
+
+  /// Versus abbreviation between players.
+  ///
+  /// In en, this message translates to:
+  /// **'vs'**
+  String get vs;
+
+  /// Label for points needed to win standard game.
+  ///
+  /// In en, this message translates to:
+  /// **'points to win'**
+  String get pointsToWin;
+
+  /// Label for margin of points required to win.
+  ///
+  /// In en, this message translates to:
+  /// **'win by'**
+  String get winBy;
+
+  /// Label for return timer seconds.
+  ///
+  /// In en, this message translates to:
+  /// **'to return'**
+  String get toReturn;
+
+  /// Button label to start a game.
+  ///
+  /// In en, this message translates to:
+  /// **'Start game'**
+  String get startGame;
+
+  /// Title for custom game card.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom game'**
+  String get customGame;
+
+  /// Subtitle description for custom game card.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorter game or your own names'**
+  String get customGameSubtitle;
+
+  /// Title tag for last match card.
+  ///
+  /// In en, this message translates to:
+  /// **'LAST MATCH'**
+  String get lastMatch;
+
+  /// Last match title with timestamp.
+  ///
+  /// In en, this message translates to:
+  /// **'LAST MATCH · {time}'**
+  String lastMatchTime(String time);
+
+  /// Link label to view all match history.
+  ///
+  /// In en, this message translates to:
+  /// **'All matches'**
+  String get allMatches;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

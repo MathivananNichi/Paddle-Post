@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paddle_post/core/constants/app_font_size.dart';
+import 'package:paddle_post/core/constants/app_letter_spacing.dart';
 import 'package:paddle_post/core/theme/app_colors.dart';
 
 /// Centralised Typography and [TextTheme] definitions for PaddlePost.
@@ -210,34 +211,177 @@ class AppTextTheme {
     );
   }
 
-  /// Small scoreboard badge score.
-  static TextStyle scoreBadge({
-    Color? color,
-    double fontSize = AppFontSize.scoreBadge,
-    double height = 1.0,
+  // ---------------------------------------------------------------------------
+  // Component & Common Typography Presets
+  // ---------------------------------------------------------------------------
+
+  /// Overline uppercase setup tag style (e.g. 'ONE-TIME SETUP').
+  static const TextStyle tag = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s11,
+    letterSpacing: AppLetterSpacing.s1_6,
+    fontWeight: FontWeight.w600,
+    color: AppColors.player1Dark,
+  );
+
+  /// Screen headline title (e.g. "Let's connect your PaddlePost.").
+  static const TextStyle heroTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s34,
+    letterSpacing: AppLetterSpacing.s0_2,
+    fontWeight: FontWeight.w700,
+  );
+
+  /// Status badge & chip label style (e.g. 'PaddlePost-4F2A', '82%', 'Sound on', 'Settings').
+  static const TextStyle chipLabel = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.darkTextSecondary,
+  );
+
+  /// Step count circle number text style.
+  static const TextStyle stepNumber = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s11,
+    fontWeight: FontWeight.w700,
+  );
+
+  /// Instruction step and body text style.
+  static const TextStyle instructionStep = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s14,
+    fontWeight: FontWeight.w400,
+    height: 1.15,
+  );
+
+  /// Setup screen description/subtitle text style.
+  static const TextStyle setupSubtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s14,
+    fontWeight: FontWeight.w400,
+    height: 1.4,
+  );
+
+  /// Device card title text style (e.g. 'PaddlePost-4F2A').
+  static const TextStyle deviceCardTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w600,
+    fontSize: AppFontSize.s16,
+  );
+
+  /// Device card subtitle / signal text style (e.g. 'Signal strong · Battery 82%').
+  static const TextStyle deviceCardSubtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: AppFontSize.s12,
+  );
+
+  /// Toast message text style.
+  static const TextStyle toast = TextStyle(
+    fontFamily: fontFamily,
+    color: Colors.white,
+    fontSize: AppFontSize.s14,
+    fontWeight: FontWeight.w600,
+  );
+
+  /// Primary button label text style in ShineButton.
+  static const TextStyle shineButton = TextStyle(
+    fontFamily: fontFamily,
+    color: Colors.white,
+    fontSize: AppFontSize.s16,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 0.2,
+  );
+
+  /// Splash screen subtitle / tagline style (e.g. 'Scoring Companion').
+  static const TextStyle splashSubtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s12,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 2.5,
+    color: AppColors.darkTextMuted,
+  );
+
+  /// Splash startup progress indicator label style (e.g. 'Starting Up').
+  static const TextStyle progressLabel = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s11,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5,
+    color: AppColors.darkTextMuted,
+  );
+
+  /// Player tag / label style in match header and cards.
+  static const TextStyle playerLabel = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s12,
+    fontWeight: FontWeight.w600,
+  );
+
+  /// Player name subtext in last match card.
+  static const TextStyle playerSubLabel = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s12,
+    fontWeight: FontWeight.w500,
+  );
+
+  /// Compact scoreboard score display style.
+  static const TextStyle playerScore = TextStyle(
+    fontFamily: scoreFontFamily,
+    fontSize: AppFontSize.s34,
+    height: 1.05,
+    fontWeight: FontWeight.w700,
+  );
+
+  /// Card primary title (e.g. 'Custom game').
+  static const TextStyle cardTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s17,
+    fontWeight: FontWeight.w700,
+  );
+
+  /// Card secondary body description (e.g. 'Shorter game or your own names', 'points to win').
+  static const TextStyle cardSubtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s12,
+    fontWeight: FontWeight.w400,
+  );
+
+  /// Action link label style (e.g. 'All matches').
+  static const TextStyle actionLink = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: AppFontSize.s12,
+    fontWeight: FontWeight.w600,
+  );
+
+  /// Large dashboard metric score display (e.g. '11', '+2', '2s').
+  static TextStyle metricScore({
+    double fontSize = AppFontSize.s64,
+    List<Shadow> shadows = const [Shadow(color: AppColors.textGlow, blurRadius: 22)],
   }) {
     return TextStyle(
       fontFamily: scoreFontFamily,
       fontSize: fontSize,
       fontWeight: FontWeight.w800,
-      height: height,
-      color: color,
+      height: 1.0,
+      shadows: shadows,
     );
   }
 
-  /// Uppercase section header / tag label.
-  static TextStyle uppercaseTag({
-    Color? color,
-    double fontSize = AppFontSize.tag,
-    FontWeight fontWeight = FontWeight.w600,
-    double letterSpacing = 0.16,
+  /// Logo brand text style.
+  static TextStyle logo({
+    Color color = AppColors.paddleColor1,
+    double fontSize = AppFontSize.s36,
+    double letterSpacing = 1.5,
+    FontWeight fontWeight = FontWeight.w700,
   }) {
     return TextStyle(
       fontFamily: fontFamily,
+      color: color,
       fontSize: fontSize,
       fontWeight: fontWeight,
       letterSpacing: letterSpacing,
-      color: color,
     );
   }
 }

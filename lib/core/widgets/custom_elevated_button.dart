@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paddle_post/core/widgets/app_text.dart';
 
 /// Simple custom elevated button for PaddlePost with built-in loading support.
 class CustomElevatedButton extends StatelessWidget {
@@ -8,11 +9,11 @@ class CustomElevatedButton extends StatelessWidget {
     this.child,
     this.label,
     this.icon,
-    this.style,
     this.isLoading = false,
     this.loadingWidget,
     this.height,
     this.width,
+    this.backGroundColor,
   });
 
   /// Callback when the button is pressed.
@@ -27,9 +28,6 @@ class CustomElevatedButton extends StatelessWidget {
   /// Optional leading icon widget.
   final Widget? icon;
 
-  /// Custom button style.
-  final ButtonStyle? style;
-
   /// Shows a loading indicator and disables user interaction when true.
   final bool isLoading;
 
@@ -41,6 +39,8 @@ class CustomElevatedButton extends StatelessWidget {
 
   /// Optional explicit width constraint.
   final double? width;
+
+  final Color? backGroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +59,15 @@ class CustomElevatedButton extends StatelessWidget {
       content = Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [icon!, const SizedBox(width: 8), child ?? Text(label ?? '')],
+        children: [icon!, const SizedBox(width: 8), child ?? AppText(label ?? '')],
       );
     } else {
-      content = child ?? Text(label ?? '');
+      content = child ?? AppText(label ?? '');
     }
 
     final button = ElevatedButton(
       onPressed: isLoading ? null : onPressed,
-      style: style,
+      style: ElevatedButton.styleFrom(backgroundColor: backGroundColor),
       child: content,
     );
 

@@ -1,200 +1,153 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:paddle_post/core/core.dart';
+import 'package:paddle_post/features/paddle_post/presentation/widgets/widgets.dart';
+import 'package:paddle_post/features/splash/presentation/widgets/splash_text_animation.dart';
 
+/// Screen managing the multi-step search, discovery, pairing, and connection to PaddlePost.
 class PaddlePostScreen extends StatefulWidget {
-  const PaddlePostScreen({super.key});
+  const PaddlePostScreen({this.deviceName = 'PaddlePost-4F2A', super.key});
+
+  /// Name of the target device, configurable from outside.
+  final String deviceName;
 
   @override
   State<PaddlePostScreen> createState() => _PaddlePostScreenState();
 }
 
 class _PaddlePostScreenState extends State<PaddlePostScreen> with SingleTickerProviderStateMixin {
-  late final AnimationController _c = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 2400),
-  )..repeat();
+  late final AnimationController _radarController;
+  final GlobalKey<SplashTextAnimationState> _cardAnimKey = GlobalKey<SplashTextAnimationState>();
+
+  SetupStep _step = SetupStep.initial;
+  bool _glowFirstTime = false;
+  Timer? _transitionTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _radarController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..addListener(_handleRadarAnimationUpdate);
+  }
+
+  void _handleRadarAnimationUpdate() {
+    if (_glowFirstTime && _radarController.value >= 0.2) {
+      setState(() {
+        _glowFirstTime = false;
+      });
+    }
+  }
+
+  void _startSearch() {
+    _transitionTimer?.cancel();
+    _radarController.repeat();
+    setState(() {
+      _step = SetupStep.searching;
+      _glowFirstTime = true;
+    });
+
+    _transitionTimer = Timer(const Duration(seconds: 2), () {
+      if (!mounted) return;
+      setState(() {
+        _step = SetupStep.found;
+        _radarController
+          ..stop()
+          ..reset();
+        Future<void>.delayed(const Duration(milliseconds: 500)).then((_) {
+          _cardAnimKey.currentState?.play();
+        });
+      });
+    });
+  }
+
+  void _startPairing() {
+    _transitionTimer?.cancel();
+    setState(() {
+      _step = SetupStep.pairing;
+    });
+
+    _transitionTimer = Timer(const Duration(milliseconds: 1500), () {
+      if (!mounted) return;
+      setState(() {
+        _step = SetupStep.paired;
+      });
+      AppToast.showSuccess(context, message: context.l10n.pairedSuccessfully);
+    });
+  }
+
+  void _unpair() {
+    _transitionTimer?.cancel();
+    _radarController
+      ..stop()
+      ..reset();
+    setState(() {
+      _step = SetupStep.initial;
+      _glowFirstTime = false;
+    });
+  }
+
+  void _goToHome() {
+    context.goNamed(AppRoutes.homeName);
+  }
 
   @override
   void dispose() {
-    _c.dispose();
+    _transitionTimer?.cancel();
+    _radarController
+      ..removeListener(_handleRadarAnimationUpdate)
+      ..dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      safeAreaTop: false,
-      body: Row(
-        children: [
-          Expanded(child: _leftWidget()),
-          const VerticalDivider(),
-          Expanded(child: _rightWidget()),
-        ],
+    return AdaptiveScale(
+      child: AppScaffold(
+        safeAreaTop: false,
+        body: Row(
+          children: [
+            Expanded(
+              child: SetupInstructionsPanel(
+                step: _step,
+                deviceName: widget.deviceName,
+                onFindPressed: _startSearch,
+                onPlayPressed: _goToHome,
+              ),
+            ),
+            const VerticalDivider(),
+            Expanded(
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  SearchingRadarWidget(
+                    animation: _radarController,
+                    glowFirstTime: _glowFirstTime,
+                    isPaired: _step == SetupStep.paired,
+                  ),
+                  if (_step != SetupStep.initial && _step != SetupStep.searching)
+                    Positioned(
+                      child: SplashTextAnimation(
+                        key: _cardAnimKey,
+                        bottomOffset: 100,
+                        children: [
+                          DeviceCard(
+                            deviceName: widget.deviceName,
+                            step: _step,
+                            onPair: _startPairing,
+                            onUnpair: _unpair,
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
-
-  Widget _leftWidget() {
-    return LayoutBuilder(
-      builder: (context, cons) {
-        return FittedBox(
-          child: Container(
-            width: cons.maxWidth, // fixed width so text wraps the same on every phone
-            padding: EdgeInsets.only(
-              left: AppPadding.p12,
-              top: context.safeArea.top,
-              right: AppPadding.p16,
-              bottom: AppPadding.p20,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  context.l10n.oneTimeSetup,
-                  style: TextStyle(
-                    fontSize: AppFontSize.s11,
-                    letterSpacing: AppLetterSpacing.s1_6,
-                    fontWeight: FontWeight.w600,
-                    color: context.colors.primary,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: AppPadding.p12, bottom: AppPadding.p16),
-                  child: AppText(
-                    context.l10n.connectPaddlePostTitle,
-                    style: TextStyle(
-                      fontSize: AppFontSize.s34,
-                      letterSpacing: AppLetterSpacing.s0_2,
-                      fontWeight: FontWeight.w700,
-                      color: context.colors.onSurface,
-                    ),
-                  ),
-                ),
-                _ConnectStepsCard(count: '1', text: context.l10n.connectStep1),
-                const SizedBox(height: AppSize.s14),
-                _ConnectStepsCard(count: '2', text: context.l10n.connectStep2),
-                const SizedBox(height: 40),
-                ShineButton(label: context.l10n.findMyPaddlePost, onPressed: () {}),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _rightWidget() {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return CustomPaint(
-          painter: SearchingCirclePainter(progress: _c),
-          child: SizedBox(height: constraints.maxHeight, width: constraints.maxWidth),
-        );
-      },
-    );
-  }
-}
-
-class _ConnectStepsCard extends StatelessWidget {
-  const _ConnectStepsCard({required this.count, required this.text});
-
-  final String count;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      spacing: AppSize.s6,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: context.colors.surface,
-            border: Border.all(color: context.colors.outlineVariant),
-          ),
-          child: AppText(
-            count,
-            style: TextStyle(
-              fontSize: AppFontSize.s11,
-              fontWeight: FontWeight.w700,
-              color: context.colors.onSurface,
-            ),
-          ),
-        ),
-        Flexible(
-          child: AppText(
-            text,
-            style: TextStyle(
-              fontSize: AppFontSize.s14,
-              fontWeight: FontWeight.w400,
-              color: context.paddleColors.textBody,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class SearchingCirclePainter extends CustomPainter {
-  SearchingCirclePainter({required this.progress, this.spacing = 40}) : super(repaint: progress);
-
-  final Animation<double> progress; // 0 → 1, repeating
-  final double spacing;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (!size.width.isFinite || !size.height.isFinite) return;
-
-    final center = size.center(Offset.zero);
-    final maxRadius = size.shortestSide / 2;
-    final ringCount = (maxRadius / spacing).floor();
-    if (ringCount < 1) return;
-
-    // Wave position: moves from the center (0) to just past the last ring.
-    final wave = progress.value * (ringCount + 1);
-
-    for (var i = 1; i <= ringCount; i++) {
-      // 1 when the wave is exactly on this ring, 0 when it is 1.5 rings away.
-      final glow = (1 - (wave - i).abs() / 1.5).clamp(0.0, 1.0);
-      final radius = spacing * i;
-
-      // Base ring (always visible, faint)
-      canvas.drawCircle(
-        center,
-        radius,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.2
-          ..color = AppColors.warning.withValues(alpha: 0.25 + 0.75 * glow),
-      );
-
-      // Glow layer (only while the wave is near)
-      if (glow > 0) {
-        canvas.drawCircle(
-          center,
-          radius,
-          Paint()
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 5
-            ..color = AppColors.warning.withValues(alpha: 0.6 * glow)
-            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6),
-        );
-      }
-    }
-
-    // Center dot with a soft glow
-    canvas.drawCircle(
-      center,
-      14,
-      Paint()
-        ..color = AppColors.primary.withValues(alpha: 0.5)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10),
-    );
-    canvas.drawCircle(center, 10, Paint()..color = AppColors.primary);
-  }
-
-  @override
-  bool shouldRepaint(covariant SearchingCirclePainter old) => old.spacing != spacing;
 }

@@ -49,6 +49,7 @@ dependencies:
   logger: ^2.7.0
   connectivity_plus: ^7.2.0
   intl: ^0.20.2
+  fluttertoast: ^10.0.2
 
 dev_dependencies:
   flutter_test:
@@ -106,3 +107,5 @@ flutter:
           weight: 600
         - asset: assets/fonts/saira_condensed/SairaCondensed-Bold.ttf
           weight: 700
+        - asset: assets/fonts/saira_condensed/SairaCondensed-ExtraBold.ttf
+          weight: 800

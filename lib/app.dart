@@ -25,6 +25,11 @@ class App extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: router,
+      builder: (context, child) => MediaQuery.withClampedTextScaling(
+        minScaleFactor: 0.9,
+        maxScaleFactor: 1.2,
+        child: child!,
+      ),
     );
   }
 }

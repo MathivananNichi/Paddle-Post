@@ -20,6 +20,10 @@ class AppColors {
   /// Splash screen background radial glow
   static const Color splashGlowStart = Color(0x66142FDF);
   static const Color splashGlowEnd = Color(0x000B1018);
+  static const Color waveCenter = Color(0xFF6f9bff);
+  static const Color deviceBorder = Color.fromRGBO(255, 255, 255, 0.13);
+
+  static const Color textGlow = Color.fromRGBO(160, 190, 255, .45);
 
   /// Player 1 (Blue / --pa: #2563eb, --a: #8fb1ff, --a2: #cfdcff, --paGlow: #3b7bff)
   static const Color primary = Color(0xFF2563EB);

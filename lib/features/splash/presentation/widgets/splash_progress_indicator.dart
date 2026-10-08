@@ -83,15 +83,7 @@ class SplashProgressIndicatorState extends State<SplashProgressIndicator>
               );
             },
           ),
-          AppText(
-            effectiveLabel,
-            style: const TextStyle(
-              fontSize: AppFontSize.s11,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.5,
-              color: AppColors.darkTextMuted,
-            ),
-          ),
+          AppText(effectiveLabel, style: AppTextTheme.progressLabel),
         ],
       ),
     );

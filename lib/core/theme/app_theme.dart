@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:paddle_post/core/constants/app_padding.dart';
+import 'package:paddle_post/core/constants/app_radius.dart';
 import 'package:paddle_post/core/theme/app_colors.dart';
 import 'package:paddle_post/core/theme/app_text_theme.dart';
 import 'package:paddle_post/core/theme/paddle_post_theme_extension.dart';
@@ -196,15 +198,19 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          backgroundColor: isLight ? AppColors.darkBackground : AppColors.darkSurface,
-          foregroundColor: colorScheme.onSurface,
+          minimumSize: Size.zero,
+
+          padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p12),
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-            side: BorderSide(color: isLight ? AppColors.lightLine2 : AppColors.darkLine2),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.r12)),
+          backgroundColor: isLight ? AppColors.darkBackground : AppColors.primary,
+          foregroundColor: colorScheme.onSurface,
+
+          textStyle: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            fontFamily: AppTextTheme.fontFamily,
           ),
-          textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(

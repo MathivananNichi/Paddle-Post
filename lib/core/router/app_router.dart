@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:paddle_post/core/router/app_routes.dart';
 import 'package:paddle_post/features/auth/presentation/viewmodels/auth_controller.dart';
 import 'package:paddle_post/features/auth/presentation/views/login_view.dart';
+import 'package:paddle_post/features/home/presentation/view/home_screen.dart';
 import 'package:paddle_post/features/paddle_post/presentation/view/paddle_post_screen.dart';
 import 'package:paddle_post/features/splash/presentation/view/splash_screen.dart';
 import 'package:paddle_post/features/users/presentation/views/users_view.dart';
@@ -56,6 +57,12 @@ GoRouter goRouter(Ref ref) {
         name: AppRoutes.paddlePostName,
         pageBuilder: (context, state) =>
             _fadeTransitionPage(key: state.pageKey, child: const PaddlePostScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.home,
+        name: AppRoutes.homeName,
+        pageBuilder: (context, state) =>
+            _fadeTransitionPage(key: state.pageKey, child: const HomeScreen()),
       ),
     ],
   );

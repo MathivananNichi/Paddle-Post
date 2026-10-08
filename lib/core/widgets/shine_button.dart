@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:paddle_post/core/constants/constants.dart';
-import 'package:paddle_post/core/theme/app_colors.dart';
+import 'package:paddle_post/core/theme/theme.dart';
+import 'package:paddle_post/core/widgets/app_text.dart';
 
 /// Glowing and shimmering call-to-action button matching the PaddlePost prototype.
 ///
@@ -130,16 +131,8 @@ class _ShineButtonState extends State<ShineButton> with SingleTickerProviderStat
                                     width: band,
                                     child: Transform(
                                       transform: Matrix4.skewX(-0.35),
-                                      child: DecoratedBox(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Colors.white.withValues(alpha: 0),
-                                              Colors.white.withValues(alpha: 0.45),
-                                              Colors.white.withValues(alpha: 0),
-                                            ],
-                                          ),
-                                        ),
+                                      child: const DecoratedBox(
+                                        decoration: AppDecoration.shineGradient,
                                       ),
                                     ),
                                   ),
@@ -160,16 +153,20 @@ class _ShineButtonState extends State<ShineButton> with SingleTickerProviderStat
                         else
                           Row(
                             children: [
-                              Text(
-                                widget.label,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 0.2,
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: AppText(
+                                      widget.label,
+                                      maxLines: 1,
+                                      style: AppTextTheme.shineButton,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              const Spacer(),
+                              const SizedBox(width: AppSize.s8),
                               widget.icon ??
                                   const Icon(
                                     Icons.arrow_forward_rounded,

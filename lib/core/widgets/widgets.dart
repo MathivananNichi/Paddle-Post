@@ -1,6 +1,7 @@
 export 'app_scaffold.dart';
 export 'app_text.dart';
 export 'app_text_field.dart';
+export 'app_toast.dart';
 export 'custom_elevated_button.dart';
 export 'empty_view.dart';
 export 'error_view.dart';

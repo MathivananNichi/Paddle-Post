@@ -42,6 +42,60 @@
   "@findMyPaddlePost": {
     "description": "Action label or title to find and discover the PaddlePost device."
   },
+  "pair": "Pair",
+  "@pair": {
+    "description": "Button label to pair with a device."
+  },
+  "pairing": "Pairing...",
+  "@pairing": {
+    "description": "Status text while pairing with a device."
+  },
+  "paired": "Paired",
+  "@paired": {
+    "description": "Status label indicating a device is successfully paired."
+  },
+  "pairedSuccessfully": "Paired successfully",
+  "@pairedSuccessfully": {
+    "description": "Toast notification message when device is paired successfully."
+  },
+  "unpair": "Unpair",
+  "@unpair": {
+    "description": "Button label to unpair a device."
+  },
+  "foundIt": "Found it.",
+  "@foundIt": {
+    "description": "Title when the PaddlePost module is found."
+  },
+  "tapModuleToPair": "Tap your module to pair. You only do this once on this phone.",
+  "@tapModuleToPair": {
+    "description": "Instruction subtitle prompting the user to tap the module to pair."
+  },
+  "youreAllSet": "You're all set.",
+  "@youreAllSet": {
+    "description": "Title displayed when device pairing is completed."
+  },
+  "reconnectOnItsOwn": "This phone will reconnect to {deviceName} on its own from now on. No setup before games.",
+  "@reconnectOnItsOwn": {
+    "description": "Message informing the user that the phone will auto-reconnect to the device.",
+    "placeholders": {
+      "deviceName": {
+        "type": "String",
+        "example": "PaddlePost-4F2A"
+      }
+    }
+  },
+  "lookingForYourModule": "Looking for your module…",
+  "@lookingForYourModule": {
+    "description": "Title displayed while searching for the module."
+  },
+  "thisTakesAFewSeconds": "This takes a few seconds.",
+  "@thisTakesAFewSeconds": {
+    "description": "Subtitle displayed while search is in progress."
+  },
+  "letsPlay": "Let's play",
+  "@letsPlay": {
+    "description": "Button label to start playing after device setup is completed."
+  },
 
   "signInAppBarTitle": "Sign in",
   "@signInAppBarTitle": {
@@ -109,5 +163,87 @@
   "failureUnknown": "An unexpected error occurred",
   "@failureUnknown": {
     "description": "Message for an unanticipated failure."
+  },
+  "soundOn": "Sound on",
+  "@soundOn": {
+    "description": "Label for sound enabled status/action chip on home screen."
+  },
+  "soundOff": "Sound off",
+  "@soundOff": {
+    "description": "Label for sound disabled status/action chip on home screen."
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Label for settings action chip on home screen."
+  },
+  "signalStrongBattery": "Signal strong · Battery {batteryPercent}",
+  "@signalStrongBattery": {
+    "description": "Signal and battery status text for device card.",
+    "placeholders": {
+      "batteryPercent": {
+        "type": "String",
+        "example": "82%"
+      }
+    }
+  },
+  "standardGame": "STANDARD GAME",
+  "@standardGame": {
+    "description": "Tag title for standard game mode."
+  },
+  "player1": "Player 1",
+  "@player1": {
+    "description": "Label for Player 1."
+  },
+  "player2": "Player 2",
+  "@player2": {
+    "description": "Label for Player 2."
+  },
+  "vs": "vs",
+  "@vs": {
+    "description": "Versus abbreviation between players."
+  },
+  "pointsToWin": "points to win",
+  "@pointsToWin": {
+    "description": "Label for points needed to win standard game."
+  },
+  "winBy": "win by",
+  "@winBy": {
+    "description": "Label for margin of points required to win."
+  },
+  "toReturn": "to return",
+  "@toReturn": {
+    "description": "Label for return timer seconds."
+  },
+  "startGame": "Start game",
+  "@startGame": {
+    "description": "Button label to start a game."
+  },
+  "customGame": "Custom game",
+  "@customGame": {
+    "description": "Title for custom game card."
+  },
+  "customGameSubtitle": "Shorter game or your own names",
+  "@customGameSubtitle": {
+    "description": "Subtitle description for custom game card."
+  },
+  "lastMatch": "LAST MATCH",
+  "@lastMatch": {
+    "description": "Title tag for last match card."
+  },
+  "lastMatchTime": "LAST MATCH · {time}",
+  "@lastMatchTime": {
+    "description": "Last match title with timestamp.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "Today, 14:08"
+      }
+    }
+  },
+  "allMatches": "All matches",
+  "@allMatches": {
+    "description": "Link label to view all match history."
   }
 }
+
+

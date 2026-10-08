@@ -24,6 +24,7 @@ Future<void> bootstrap(Flavor flavor) async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   final prefs = await SharedPreferences.getInstance();
 
   // Errors surfaced by the Flutter framework (build/layout/paint).

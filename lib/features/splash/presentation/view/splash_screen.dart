@@ -54,16 +54,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   key: _textAnimKey,
                   onChangeAnimation: _onTextAnimationProgress,
                   children: [
-                    const _PaddlePostLogo(),
-                    AppText(
-                      context.l10n.scoringCompanion,
-                      style: const TextStyle(
-                        fontSize: AppFontSize.s12,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 2.5,
-                        color: AppColors.darkTextMuted,
-                      ),
-                    ),
+                    const PaddlePostLogo(),
+                    AppText(context.l10n.scoringCompanion, style: AppTextTheme.splashSubtitle),
                   ],
                 ),
                 const Spacer(),
@@ -83,33 +75,6 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-/// Logo text combining two theme colors.
-class _PaddlePostLogo extends StatelessWidget {
-  const _PaddlePostLogo();
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: const TextSpan(
-        text: 'PADDLE',
-        style: TextStyle(
-          color: AppColors.paddleColor1,
-          fontSize: 36,
-          fontWeight: FontWeight.w700,
-          fontFamily: AppTextTheme.fontFamily,
-          letterSpacing: 1.5,
-        ),
-        children: [
-          TextSpan(
-            text: 'POST',
-            style: TextStyle(color: AppColors.paddleColor2),
-          ),
-        ],
       ),
     );
   }
