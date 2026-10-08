@@ -10,7 +10,11 @@ class PaddlePostLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseStyle = AppTextTheme.logo(fontSize: fontSize, letterSpacing: letterSpacing);
+    final baseStyle = AppTextTheme.logo(
+      color: context.paddleColors.brandA,
+      fontSize: fontSize,
+      letterSpacing: letterSpacing,
+    );
 
     return RichText(
       text: TextSpan(
@@ -19,7 +23,7 @@ class PaddlePostLogo extends StatelessWidget {
         children: [
           TextSpan(
             text: 'POST',
-            style: baseStyle.copyWith(color: AppColors.paddleColor2),
+            style: baseStyle.copyWith(color: context.paddleColors.brandB),
           ),
         ],
       ),

@@ -24,7 +24,7 @@ class HomeDeviceStatusChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: AppSize.s8,
         children: [
-          HomeStatusDot(color: isConnected ? AppColors.success : AppColors.error),
+          HomeStatusDot(color: isConnected ? context.paddleColors.success : context.colors.error),
           AppText(deviceName, style: AppTextTheme.chipLabel),
         ],
       ),

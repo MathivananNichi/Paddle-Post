@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:paddle_post/core/constants/constants.dart';
-import 'package:paddle_post/core/theme/theme.dart';
-import 'package:paddle_post/core/widgets/app_text.dart';
+import 'package:paddle_post/core/core.dart';
 
 /// Toast notification utility matching the PaddlePost design system.
 class AppToast {
@@ -13,7 +11,7 @@ class AppToast {
     BuildContext context, {
     required String message,
     Duration duration = const Duration(seconds: 3),
-    double topOffset = 0,
+    double topOffset = 10,
   }) {
     final fToast = FToast()..init(context);
 
@@ -25,7 +23,7 @@ class AppToast {
         children: [
           Container(
             padding: const EdgeInsets.all(2),
-            decoration: AppDecoration.circle(color: AppColors.success),
+            decoration: AppDecoration.circle(color: context.paddleColors.success),
             child: const Icon(Icons.check, size: 14, color: Colors.white),
           ),
           const SizedBox(width: AppSize.s8),

@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:paddle_post/core/constants/constants.dart';
-import 'package:paddle_post/core/theme/theme.dart';
-import 'package:paddle_post/core/widgets/app_text.dart';
+import 'package:paddle_post/core/core.dart';
 
 /// Glowing and shimmering call-to-action button matching the PaddlePost prototype.
 ///
@@ -13,7 +11,7 @@ class ShineButton extends StatefulWidget {
     required this.label,
     required this.onPressed,
     super.key,
-    this.color = AppColors.primary,
+    this.color,
     this.height = 56.0,
     this.borderRadius = AppRadius.r18,
     this.isLoading = false,
@@ -27,7 +25,7 @@ class ShineButton extends StatefulWidget {
   final VoidCallback? onPressed;
 
   /// Main background color.
-  final Color color;
+  final Color? color;
 
   /// Button height.
   final double height;
@@ -69,6 +67,7 @@ class _ShineButtonState extends State<ShineButton> with SingleTickerProviderStat
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, _) {
+        final effectiveColor = widget.color ?? context.colors.primary;
         final r = _ringInterval.transform(_controller.value);
         final ringGrow = 14.0 * r;
         final ringAlpha = 0.35 * (1 - r) * (r * 10).clamp(0.0, 1.0);
@@ -88,7 +87,7 @@ class _ShineButtonState extends State<ShineButton> with SingleTickerProviderStat
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(widget.borderRadius + ringGrow),
-                    color: widget.color.withValues(alpha: ringAlpha),
+                    color: effectiveColor.withValues(alpha: ringAlpha),
                   ),
                 ),
               ),
@@ -99,7 +98,7 @@ class _ShineButtonState extends State<ShineButton> with SingleTickerProviderStat
                   borderRadius: BorderRadius.circular(widget.borderRadius),
                   boxShadow: [
                     BoxShadow(
-                      color: widget.color.withValues(alpha: 0.45),
+                      color: effectiveColor.withValues(alpha: 0.45),
                       blurRadius: 28,
                       offset: const Offset(0, 10),
                     ),
@@ -110,7 +109,7 @@ class _ShineButtonState extends State<ShineButton> with SingleTickerProviderStat
                   child: Container(
                     height: widget.height,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    color: widget.color,
+                    color: effectiveColor,
                     child: Stack(
                       alignment: Alignment.center,
                       children: [

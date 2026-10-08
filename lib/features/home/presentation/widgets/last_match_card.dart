@@ -72,13 +72,9 @@ class LastMatchCard extends StatelessWidget {
                   children: [
                     AppText(
                       context.l10n.allMatches,
-                      style: AppTextTheme.actionLink.copyWith(color: context.paddleColors.player1),
+                      style: AppTextTheme.actionLink.copyWith(color: context.colors.primary),
                     ),
-                    Icon(
-                      Icons.arrow_right_alt,
-                      color: context.paddleColors.player1,
-                      size: AppSize.s18,
-                    ),
+                    Icon(Icons.arrow_right_alt, color: context.colors.primary, size: AppSize.s18),
                   ],
                 ),
               ),

@@ -78,7 +78,7 @@ class SplashProgressIndicatorState extends State<SplashProgressIndicator>
               return LinearProgressIndicator(
                 value: _progressController.value,
                 minHeight: AppSize.s3,
-                backgroundColor: AppColors.darkSurfaceHighlight,
+                backgroundColor: context.paddleColors.surfaceHighlight,
                 valueColor: AlwaysStoppedAnimation<Color>(context.paddleColors.player1),
               );
             },

@@ -31,17 +31,18 @@ class AppTheme {
     final colorScheme = isLight
         ? const ColorScheme(
             brightness: Brightness.light,
-            primary: AppColors.primary,
+            primary: AppColors.darkPa,
+            // App main brand/action color is always blue
             onPrimary: Colors.white,
-            primaryContainer: AppColors.player1Tint,
-            onPrimaryContainer: AppColors.primaryLight,
-            secondary: AppColors.secondaryOrange,
+            primaryContainer: AppColors.lightPlayer1Accent,
+            onPrimaryContainer: AppColors.lightPlayer1,
+            secondary: AppColors.lightPb,
             onSecondary: Colors.white,
-            secondaryContainer: AppColors.player2Tint,
-            onSecondaryContainer: AppColors.secondaryLight,
-            tertiary: AppColors.primaryLight,
+            secondaryContainer: AppColors.lightPlayer2Accent,
+            onSecondaryContainer: AppColors.lightPlayer2,
+            tertiary: AppColors.lightBrandA,
             onTertiary: Colors.white,
-            error: AppColors.error,
+            error: AppColors.lightError,
             onError: Colors.white,
             surface: AppColors.lightSurface,
             onSurface: AppColors.lightText,
@@ -58,15 +59,15 @@ class AppTheme {
           )
         : const ColorScheme(
             brightness: Brightness.dark,
-            primary: AppColors.primary,
+            primary: AppColors.darkPa,
             onPrimary: Color(0xFF002B75),
-            primaryContainer: AppColors.primary,
-            onPrimaryContainer: AppColors.player1Tint,
-            secondary: AppColors.player2Dark,
+            primaryContainer: AppColors.darkPa,
+            onPrimaryContainer: AppColors.darkPlayer1Accent,
+            secondary: AppColors.darkPlayer2,
             onSecondary: Color(0xFF4E2600),
-            secondaryContainer: AppColors.secondaryOrange,
-            onSecondaryContainer: AppColors.player2Tint,
-            tertiary: AppColors.player1Glow,
+            secondaryContainer: AppColors.darkPb,
+            onSecondaryContainer: AppColors.darkPlayer2Accent,
+            tertiary: AppColors.darkPlayer1Glow,
             onTertiary: Colors.white,
             error: AppColors.darkError,
             onError: Color(0xFF450A0A),
@@ -170,18 +171,18 @@ class AppTheme {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(
-            color: isLight ? AppColors.primary : AppColors.player1Dark,
+            color: isLight ? AppColors.lightBrandA : AppColors.darkBrandA,
             width: 1.5,
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide(color: isLight ? AppColors.error : AppColors.darkError),
+          borderSide: BorderSide(color: isLight ? AppColors.lightError : AppColors.darkError),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(
-            color: isLight ? AppColors.error : AppColors.darkError,
+            color: isLight ? AppColors.lightError : AppColors.darkError,
             width: 1.5,
           ),
         ),
@@ -189,7 +190,7 @@ class AppTheme {
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           minimumSize: const Size.fromHeight(52),
-          backgroundColor: isLight ? AppColors.primary : AppColors.primary,
+          backgroundColor: AppColors.darkPa,
           foregroundColor: Colors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -203,8 +204,8 @@ class AppTheme {
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p12),
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.r12)),
-          backgroundColor: isLight ? AppColors.darkBackground : AppColors.primary,
-          foregroundColor: colorScheme.onSurface,
+          backgroundColor: isLight ? AppColors.lightSurface : AppColors.darkSurfaceHighlight,
+          foregroundColor: Colors.white,
 
           textStyle: const TextStyle(
             fontSize: 14,
@@ -224,7 +225,7 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: isLight ? AppColors.primary : AppColors.player1Dark,
+          foregroundColor: isLight ? AppColors.lightBrandA : AppColors.darkBrandA,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
         ),
@@ -241,7 +242,7 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primary;
+            return isLight ? AppColors.lightBrandA : AppColors.darkBrandA;
           }
           return isLight ? const Color(0xFFCBD5E1) : const Color(0xFF2A3142);
         }),

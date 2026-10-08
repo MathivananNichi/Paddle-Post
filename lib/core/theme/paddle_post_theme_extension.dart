@@ -7,11 +7,14 @@ import 'package:paddle_post/core/theme/app_colors.dart';
 /// `context.paddleColors` or `Theme.of(context).extension<PaddlePostColors>()`.
 class PaddlePostColors extends ThemeExtension<PaddlePostColors> {
   const PaddlePostColors({
+    required this.brandA,
+    required this.brandB,
     required this.panelBackground,
     required this.surfaceHighlight,
     required this.centerCourt,
     required this.lineSubtle,
     required this.lineBorder,
+    required this.textSecondary,
     required this.textMuted,
     required this.textFaint,
     required this.textBody,
@@ -31,11 +34,14 @@ class PaddlePostColors extends ThemeExtension<PaddlePostColors> {
     required this.danger,
   });
 
+  final Color brandA;
+  final Color brandB;
   final Color panelBackground;
   final Color surfaceHighlight;
   final Color centerCourt;
   final Color lineSubtle;
   final Color lineBorder;
+  final Color textSecondary;
   final Color textMuted;
   final Color textFaint;
   final Color textBody;
@@ -56,63 +62,72 @@ class PaddlePostColors extends ThemeExtension<PaddlePostColors> {
 
   /// Dark theme token instance (Exact specification from HTML prototype).
   static const dark = PaddlePostColors(
+    brandA: AppColors.darkBrandA,
+    brandB: AppColors.darkBrandB,
     panelBackground: AppColors.darkPanel,
     surfaceHighlight: AppColors.darkSurfaceHighlight,
     centerCourt: AppColors.darkCenterCourt,
     lineSubtle: AppColors.darkLine,
     lineBorder: AppColors.darkLine2,
+    textSecondary: AppColors.darkTextSecondary,
     textMuted: AppColors.darkTextMuted,
     textFaint: AppColors.darkTextFaint,
     textBody: AppColors.darkTextBody,
-    player1: AppColors.player1Dark,
-    player1Accent: AppColors.player1Tint,
-    player1Soft: AppColors.player1SoftDark,
-    player1Glow: AppColors.player1Glow,
-    player2: AppColors.player2Dark,
-    player2Accent: AppColors.player2Tint,
-    player2Soft: AppColors.player2SoftDark,
-    player2Glow: AppColors.player2Glow,
+    player1: AppColors.darkPlayer1,
+    player1Accent: AppColors.darkPlayer1Accent,
+    player1Soft: AppColors.darkPlayer1Soft,
+    player1Glow: AppColors.darkPlayer1Glow,
+    player2: AppColors.darkPlayer2,
+    player2Accent: AppColors.darkPlayer2Accent,
+    player2Soft: AppColors.darkPlayer2Soft,
+    player2Glow: AppColors.darkPlayer2Glow,
     digit: AppColors.darkDigit,
     scrim: AppColors.darkScrim,
     dialog: AppColors.darkDialog,
     success: AppColors.success,
-    warning: AppColors.warning,
+    warning: AppColors.darkWarning,
     danger: AppColors.darkError,
   );
 
   /// Light theme token instance.
   static const light = PaddlePostColors(
+    brandA: AppColors.lightBrandA,
+    brandB: AppColors.lightBrandB,
     panelBackground: AppColors.lightPanel,
     surfaceHighlight: AppColors.lightSurfaceHighlight,
     centerCourt: AppColors.lightCenterCourt,
     lineSubtle: AppColors.lightLine,
     lineBorder: AppColors.lightLine2,
+    textSecondary: AppColors.lightTextSecondary,
     textMuted: AppColors.lightTextMuted,
     textFaint: AppColors.lightTextFaint,
     textBody: AppColors.lightTextBody,
-    player1: AppColors.primaryLight,
-    player1Accent: AppColors.primary,
-    player1Soft: AppColors.player1SoftLight,
-    player1Glow: AppColors.player1Glow,
-    player2: AppColors.secondaryLight,
-    player2Accent: AppColors.secondaryOrange,
-    player2Soft: AppColors.player2SoftLight,
-    player2Glow: AppColors.player2Glow,
+    player1: AppColors.lightPlayer1,
+    player1Accent: AppColors.lightPlayer1Accent,
+    player1Soft: AppColors.lightPlayer1Soft,
+    player1Glow: AppColors.lightPlayer1Glow,
+    player2: AppColors.lightPlayer2,
+    player2Accent: AppColors.lightPlayer2Accent,
+    player2Soft: AppColors.lightPlayer2Soft,
+    player2Glow: AppColors.lightPlayer2Glow,
     digit: AppColors.lightDigit,
     scrim: AppColors.lightScrim,
     dialog: AppColors.lightDialog,
     success: AppColors.success,
-    warning: AppColors.warning,
-    danger: AppColors.error,
+    warning: AppColors.lightWarning,
+    danger: AppColors.lightError,
   );
 
   @override
   PaddlePostColors copyWith({
+    Color? brandA,
+    Color? brandB,
     Color? panelBackground,
     Color? surfaceHighlight,
     Color? centerCourt,
     Color? lineSubtle,
     Color? lineBorder,
+    Color? textSecondary,
     Color? textMuted,
     Color? textFaint,
     Color? textBody,
@@ -132,11 +147,14 @@ class PaddlePostColors extends ThemeExtension<PaddlePostColors> {
     Color? danger,
   }) {
     return PaddlePostColors(
+      brandA: brandA ?? this.brandA,
+      brandB: brandB ?? this.brandB,
       panelBackground: panelBackground ?? this.panelBackground,
       surfaceHighlight: surfaceHighlight ?? this.surfaceHighlight,
       centerCourt: centerCourt ?? this.centerCourt,
       lineSubtle: lineSubtle ?? this.lineSubtle,
       lineBorder: lineBorder ?? this.lineBorder,
+      textSecondary: textSecondary ?? this.textSecondary,
       textMuted: textMuted ?? this.textMuted,
       textFaint: textFaint ?? this.textFaint,
       textBody: textBody ?? this.textBody,
@@ -161,11 +179,14 @@ class PaddlePostColors extends ThemeExtension<PaddlePostColors> {
   PaddlePostColors lerp(ThemeExtension<PaddlePostColors>? other, double t) {
     if (other is! PaddlePostColors) return this;
     return PaddlePostColors(
+      brandA: Color.lerp(brandA, other.brandA, t)!,
+      brandB: Color.lerp(brandB, other.brandB, t)!,
       panelBackground: Color.lerp(panelBackground, other.panelBackground, t)!,
       surfaceHighlight: Color.lerp(surfaceHighlight, other.surfaceHighlight, t)!,
       centerCourt: Color.lerp(centerCourt, other.centerCourt, t)!,
       lineSubtle: Color.lerp(lineSubtle, other.lineSubtle, t)!,
       lineBorder: Color.lerp(lineBorder, other.lineBorder, t)!,
+      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
       textMuted: Color.lerp(textMuted, other.textMuted, t)!,
       textFaint: Color.lerp(textFaint, other.textFaint, t)!,
       textBody: Color.lerp(textBody, other.textBody, t)!,

@@ -28,7 +28,10 @@ class DeviceCard extends StatelessWidget {
       margin: const EdgeInsets.all(AppPadding.p12),
       padding: const EdgeInsets.all(AppPadding.p12),
       width: double.infinity,
-      decoration: AppDecoration.deviceCard(color: context.colors.surface),
+      decoration: AppDecoration.deviceCard(
+        color: context.colors.surface,
+        borderColor: context.paddleColors.lineBorder,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -52,19 +55,19 @@ class DeviceCard extends StatelessWidget {
             CustomElevatedButton(
               onPressed: onUnpair,
               label: context.l10n.unpair,
-              backGroundColor: AppColors.error,
+              backGroundColor: AppColors.lightError,
             )
           else if (step == SetupStep.pairing)
             CustomElevatedButton(
-              onPressed: null,
+              onPressed: () {},
               label: context.l10n.pairing,
-              backGroundColor: AppColors.primary,
+              backGroundColor: context.colors.primary,
             )
           else
             CustomElevatedButton(
               onPressed: onPair,
               label: context.l10n.pair,
-              backGroundColor: AppColors.primary,
+              backGroundColor: context.colors.primary,
             ),
         ],
       ),

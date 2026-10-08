@@ -39,6 +39,7 @@ class HomeTopBar extends StatelessWidget {
         HomeBatteryChip(percentage: batteryPercentage, onTap: onBatteryTap),
         HomeActionChip(
           label: isSoundOn ? context.l10n.soundOn : context.l10n.soundOff,
+          isActive: isSoundOn,
           onTap: onSoundToggle,
         ),
         HomeActionChip(label: context.l10n.settings, onTap: onSettingsTap),

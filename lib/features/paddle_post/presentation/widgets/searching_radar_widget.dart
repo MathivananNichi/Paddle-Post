@@ -18,7 +18,8 @@ class SearchingRadarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveDotColor = dotColor ?? (isPaired ? AppColors.success : AppColors.waveCenter);
+    final effectiveDotColor =
+        dotColor ?? (isPaired ? context.paddleColors.success : context.paddleColors.centerCourt);
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -35,6 +36,9 @@ class SearchingRadarWidget extends StatelessWidget {
                     progress: animation,
                     glowFirstTime: glowFirstTime,
                     dotColor: effectiveDotColor,
+                    ringColor: context.paddleColors.lineBorder,
+                    glowColor: context.colors.primary,
+                    successColor: context.paddleColors.success,
                   ),
                 ),
               ),
@@ -50,15 +54,21 @@ class SearchingRadarWidget extends StatelessWidget {
 class SearchingCirclePainter extends CustomPainter {
   SearchingCirclePainter({
     required this.progress,
+    required this.ringColor,
+    required this.glowColor,
+    required this.successColor,
     this.spacing = 40,
     this.glowFirstTime = false,
-    this.dotColor = AppColors.waveCenter,
+    this.dotColor,
   }) : super(repaint: progress);
 
   final Animation<double> progress;
   final double spacing;
   final bool glowFirstTime;
-  final Color dotColor;
+  final Color? dotColor;
+  final Color ringColor;
+  final Color glowColor;
+  final Color successColor;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -82,7 +92,7 @@ class SearchingCirclePainter extends CustomPainter {
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.2
-          ..color = (i == ringCount && glowFirstTime) ? AppColors.primary : AppColors.darkRing,
+          ..color = (i == ringCount && glowFirstTime) ? glowColor : ringColor,
       );
     }
 
@@ -99,8 +109,7 @@ class SearchingCirclePainter extends CustomPainter {
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 0.4
-        ..color = (dotColor == AppColors.success ? AppColors.success : AppColors.primary)
-            .withValues(alpha: opacity),
+        ..color = (dotColor == successColor ? successColor : glowColor).withValues(alpha: opacity),
     );
 
     // Center dot with a soft glow
@@ -108,10 +117,10 @@ class SearchingCirclePainter extends CustomPainter {
       center,
       15,
       Paint()
-        ..color = dotColor
+        ..color = dotColor ?? Colors.transparent
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 13),
     );
-    canvas.drawCircle(center, 10, Paint()..color = dotColor);
+    canvas.drawCircle(center, 10, Paint()..color = dotColor ?? Colors.transparent);
   }
 
   @override
@@ -119,5 +128,8 @@ class SearchingCirclePainter extends CustomPainter {
       oldDelegate.spacing != spacing ||
       oldDelegate.glowFirstTime != glowFirstTime ||
       oldDelegate.progress != progress ||
-      oldDelegate.dotColor != dotColor;
+      oldDelegate.dotColor != dotColor ||
+      oldDelegate.ringColor != ringColor ||
+      oldDelegate.glowColor != glowColor ||
+      oldDelegate.successColor != successColor;
 }

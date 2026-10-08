@@ -48,7 +48,7 @@ class GameDashBoard extends StatelessWidget {
                   const Spacer(),
                   AppText(
                     p1,
-                    style: AppTextTheme.playerLabel.copyWith(color: AppColors.player1Dark),
+                    style: AppTextTheme.playerLabel.copyWith(color: context.paddleColors.player1),
                   ),
                   AppText(
                     context.l10n.vs,
@@ -56,7 +56,7 @@ class GameDashBoard extends StatelessWidget {
                   ),
                   AppText(
                     p2,
-                    style: AppTextTheme.playerLabel.copyWith(color: AppColors.player2Dark),
+                    style: AppTextTheme.playerLabel.copyWith(color: context.paddleColors.player2),
                   ),
                 ],
               ),

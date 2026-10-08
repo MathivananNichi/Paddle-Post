@@ -6,12 +6,16 @@ class HomeCardContainer extends StatelessWidget {
   const HomeCardContainer({
     required this.child,
     this.padding = const EdgeInsets.symmetric(horizontal: AppPadding.p14, vertical: AppPadding.p8),
+    this.color,
+    this.borderColor,
     this.onTap,
     super.key,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
+  final Color? color;
+  final Color? borderColor;
   final VoidCallback? onTap;
 
   @override
@@ -19,8 +23,8 @@ class HomeCardContainer extends StatelessWidget {
     final content = Container(
       padding: padding,
       decoration: AppDecoration.statusCapsule(
-        color: context.colors.surface,
-        borderColor: context.paddleColors.digit.withValues(alpha: 0.07),
+        color: color ?? context.colors.surface,
+        borderColor: borderColor ?? context.paddleColors.digit.withValues(alpha: 0.07),
       ),
       child: child,
     );

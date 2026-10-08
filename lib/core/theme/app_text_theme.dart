@@ -221,7 +221,7 @@ class AppTextTheme {
     fontSize: AppFontSize.s11,
     letterSpacing: AppLetterSpacing.s1_6,
     fontWeight: FontWeight.w600,
-    color: AppColors.player1Dark,
+    // Note: color should be set dynamically via Theme in the widget.
   );
 
   /// Screen headline title (e.g. "Let's connect your PaddlePost.").
@@ -237,7 +237,7 @@ class AppTextTheme {
     fontFamily: fontFamily,
     fontSize: AppFontSize.s12,
     fontWeight: FontWeight.w500,
-    color: AppColors.darkTextSecondary,
+    // Note: color should be set dynamically via Theme in the widget.
   );
 
   /// Step count circle number text style.
@@ -289,7 +289,7 @@ class AppTextTheme {
   static const TextStyle shineButton = TextStyle(
     fontFamily: fontFamily,
     color: Colors.white,
-    fontSize: AppFontSize.s16,
+    fontSize: AppFontSize.s19,
     fontWeight: FontWeight.w700,
     letterSpacing: 0.2,
   );
@@ -300,7 +300,7 @@ class AppTextTheme {
     fontSize: AppFontSize.s12,
     fontWeight: FontWeight.w500,
     letterSpacing: 2.5,
-    color: AppColors.darkTextMuted,
+    // Note: color should be set dynamically via Theme in the widget.
   );
 
   /// Splash startup progress indicator label style (e.g. 'Starting Up').
@@ -309,7 +309,7 @@ class AppTextTheme {
     fontSize: AppFontSize.s11,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.5,
-    color: AppColors.darkTextMuted,
+    // Note: color should be set dynamically via Theme in the widget.
   );
 
   /// Player tag / label style in match header and cards.
@@ -371,7 +371,7 @@ class AppTextTheme {
 
   /// Logo brand text style.
   static TextStyle logo({
-    Color color = AppColors.paddleColor1,
+    Color? color,
     double fontSize = AppFontSize.s36,
     double letterSpacing = 1.5,
     FontWeight fontWeight = FontWeight.w700,

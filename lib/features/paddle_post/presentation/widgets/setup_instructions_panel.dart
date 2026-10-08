@@ -34,7 +34,10 @@ class SetupInstructionsPanel extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppText(context.l10n.oneTimeSetup, style: AppTextTheme.tag),
+              AppText(
+                context.l10n.oneTimeSetup,
+                style: AppTextTheme.tag.copyWith(color: context.paddleColors.brandA),
+              ),
               SizedBox(height: gap),
               AppText(
                 _title(context),
